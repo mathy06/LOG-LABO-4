@@ -1,4 +1,4 @@
-package clientforme;
+package crazyimage;
 /******************************************************
  Cours :             LOG-121
  Session :           Automne 2012
@@ -75,20 +75,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GraphicsEnvironment;
-import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 
@@ -129,7 +125,7 @@ import javax.swing.KeyStroke;
  * @version 1.1
  */
 
-public class ApplicationSwing extends JFrame {
+public class VueStatique extends JFrame {
 
 	private static final int CANEVAS_HAUTEUR = 500;
 
@@ -142,10 +138,6 @@ public class ApplicationSwing extends JFrame {
 	private static final char FICHIER_RACC = KeyEvent.VK_F;
 	private static final int FORME_MASK = ActionEvent.CTRL_MASK;
 	private static final char FORME_RACC = KeyEvent.VK_O;
-	private static final int ORDRE_MASK = ActionEvent.CTRL_MASK;
-	private static final char ORDRE_RACC = KeyEvent.VK_R;
-	private static final char NOSEQASC_RACC = KeyEvent.VK_N;
-	private static final char NOSEQDESC_RACC = KeyEvent.VK_S;
 	private static final int QUITTER_MASK = ActionEvent.CTRL_MASK;
 	private static final char QUITTER_RACC = KeyEvent.VK_Q;
 	private static final char AIDE_RACC = KeyEvent.VK_A;
@@ -156,9 +148,6 @@ public class ApplicationSwing extends JFrame {
 			FICHIER_TITRE = "app.frame.menus.file.title",
 			FICHIER_FORME = "app.frame.menus.file.getshape",
 			FICHIER_QUITTER = "app.frame.menus.file.exit",
-			ORDRE_TITRE = "app.frame.menus.order.title",
-			ORDRE_NOSEQASC = "app.frame.menus.order.nosequenceascending",
-			ORDRE_NOSEQDESC = "app.frame.menus.order.nosequencedescending",
 			AIDE_TITRE = "app.frame.menus.help.title",
 			AIDE_PROPOS = "app.frame.menus.help.about";
 
@@ -166,34 +155,15 @@ public class ApplicationSwing extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	private ButtonGroup groupeOrdre;
-	
-	private enum Ordre {NOSEQASC, NOSEQDESC};
-	
-	/**
-	 * Traiter les items du menu "Ordre".
-	 */
-	class OrdreAction extends AbstractAction{
-		private static final long serialVersionUID = 1L;
-		
-		public OrdreAction(String menuItemTitle, Ordre ordreTri){
-			super(menuItemTitle);
-		}
-		
-		public void actionPerformed(ActionEvent arg0){
-			//On rafraichit l'écran
-			repaint();
-			validate();
-		}
-	}
+
 	
 	/**
 	 *  Traiter l'item "Obtenir formes".
 	 */
-	class ObtenirFormesAction extends AbstractAction {
+	class OuvrirImage extends AbstractAction {
 		private static final long serialVersionUID = 1L;
 		
-		public ObtenirFormesAction() {
+		public OuvrirImage() {
 			super(ApplicationSupport.getResource(FICHIER_FORME));
 		}
 		
@@ -258,37 +228,8 @@ public class ApplicationSwing extends JFrame {
 	}
 	
 	/* - Constructeur - Créer le cadre dans lequel les formes sont dessinées. */
-	public ApplicationSwing() {
+	public VueStatique() {
 		getContentPane().add(new JScrollPane(new CustomCanvas()));
-	}
-
-	/* Créer le menu "Ordre". */
-	private JMenu creerMenuOrdre() {
-		JMenu menu = new JMenu(ApplicationSupport.getResource(ORDRE_TITRE));
-		menu.setMnemonic(ORDRE_RACC);
-		
-		groupeOrdre = new ButtonGroup();
-		
-		/* Création de JRadtioButtonMenuItem. */
-		JRadioButtonMenuItem ordreNoSeqCst = new JRadioButtonMenuItem(new OrdreAction(ApplicationSupport.getResource(ORDRE_NOSEQASC), Ordre.NOSEQASC));
-		JRadioButtonMenuItem ordreNoSeqDst = new JRadioButtonMenuItem(new OrdreAction(ApplicationSupport.getResource(ORDRE_NOSEQDESC), Ordre.NOSEQDESC));
-		
-		
-		/* Ajout des raccourcis spécifiques à chaque bouton radio. */
-		ordreNoSeqCst.setAccelerator(KeyStroke.getKeyStroke(NOSEQASC_RACC, ORDRE_MASK));
-		ordreNoSeqCst.setMnemonic(NOSEQASC_RACC);
-		ordreNoSeqDst.setAccelerator(KeyStroke.getKeyStroke(NOSEQDESC_RACC, ORDRE_MASK));
-		ordreNoSeqDst.setMnemonic(NOSEQDESC_RACC);
-
-		/* Ajout des boutons radio au groupe de radio bouton. */
-		groupeOrdre.add(ordreNoSeqCst);
-		groupeOrdre.add(ordreNoSeqDst);
-		
-		/* Ajout des boutons radio au menu. */
-		menu.add(ordreNoSeqCst);
-		menu.add(ordreNoSeqDst);
-
-		return menu;
 	}
 
 	/* Créer le menu "Fichier". */
@@ -296,7 +237,7 @@ public class ApplicationSwing extends JFrame {
 		JMenu menu = new JMenu(ApplicationSupport.getResource(FICHIER_TITRE));
 		menu.setMnemonic(FICHIER_RACC);
 		
-		menu.add(new ObtenirFormesAction());
+		menu.add(new OuvrirImage());
 		menu.getItem(0).setAccelerator(KeyStroke.getKeyStroke(FORME_RACC, FORME_MASK));
 		menu.getItem(0).setMnemonic(FORME_RACC);
 		
@@ -317,26 +258,22 @@ public class ApplicationSwing extends JFrame {
 		menu.getItem(0).setMnemonic(PROPOS_RACC);
 
 		return menu;
-	}	
+	}
 	
-	/* Lancer l'exécution de l'application. */
-	public static void main(String[] args) {
-		
-		/* Créer la fenêtre de l'application. */
-		ApplicationSwing cadre = new ApplicationSwing();
+	public static void lancer(){
+
+		VueStatique image = new VueStatique();
 		
 		JMenuBar barreMenu = new JMenuBar();
-		barreMenu.add(cadre.creerMenuFichier());
-		barreMenu.add(cadre.creerMenuOrdre());
-		barreMenu.add(cadre.creerMenuAide());
-		cadre.setJMenuBar(barreMenu);
-
-		/* On récupère la dimension de l'écran pour centrer. */	
-		Point centre = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
-		
+		barreMenu.add(image.creerMenuFichier());
+		barreMenu.add(image.creerMenuAide());
+		image.setJMenuBar(barreMenu);
+		//Point centre = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
 		/* Lancer l'application. */
-		ApplicationSupport.launch(cadre, ApplicationSupport
-				.getResource("app.frame.title"), (centre.x - (CANEVAS_LARGEUR / 2)), (centre.y - (CANEVAS_HAUTEUR / 2)), CANEVAS_LARGEUR
+		ApplicationSupport.launch(image, ApplicationSupport
+				.getResource("app.frame.title"), 0, 0, CANEVAS_LARGEUR
 				+ MARGE_H, CANEVAS_HAUTEUR + MARGE_V);
 	}
+		
 }
+
