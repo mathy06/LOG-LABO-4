@@ -325,7 +325,7 @@ public class VueZoom extends JFrame {
 		Point centre = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
 		/* Lancer l'application. */
 		ApplicationSupport.launch(zoom, ApplicationSupport
-				.getResource("app.frame.title"), (centre.x - (CANEVAS_LARGEUR / 2)), (centre.y - (CANEVAS_HAUTEUR / 2)), CANEVAS_LARGEUR
+				.getResource("app.frame.titleZoom"), (centre.x - (CANEVAS_LARGEUR / 2)), (centre.y - (CANEVAS_HAUTEUR / 2)), CANEVAS_LARGEUR
 				+ MARGE_H, CANEVAS_HAUTEUR + MARGE_V);
 	}
 		

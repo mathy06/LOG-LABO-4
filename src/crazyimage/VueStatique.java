@@ -78,8 +78,14 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Locale;
 
+import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -158,7 +164,7 @@ public class VueStatique extends JFrame {
 
 	
 	/**
-	 *  Traiter l'item "Obtenir formes".
+	 *  Traiter ouvrir image.
 	 */
 	class OuvrirImage extends AbstractAction {
 		private static final long serialVersionUID = 1L;
@@ -168,6 +174,15 @@ public class VueStatique extends JFrame {
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
+			//TODO : centraliser cette opération dans le controleur;
+			final JFileChooser fileChooser = new JFileChooser();
+			fileChooser.setLocale(Locale.getDefault());
+			fileChooser.updateUI();
+			fileChooser.setCurrentDirectory(new File("image"));
+			int answer = fileChooser.showOpenDialog(VueStatique.this);
+			/*if(answer == JFileChooser.APPROVE_OPTION){
+				//TODO : récupération de l'image
+				}*/
 		}
 	}
 	
@@ -271,7 +286,7 @@ public class VueStatique extends JFrame {
 		//Point centre = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
 		/* Lancer l'application. */
 		ApplicationSupport.launch(image, ApplicationSupport
-				.getResource("app.frame.title"), 0, 0, CANEVAS_LARGEUR
+				.getResource("app.frame.titleImage"), 0, 0, CANEVAS_LARGEUR
 				+ MARGE_H, CANEVAS_HAUTEUR + MARGE_V);
 	}
 		
