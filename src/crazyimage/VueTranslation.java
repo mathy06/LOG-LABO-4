@@ -80,6 +80,7 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 import javax.swing.AbstractAction;
 import javax.swing.ButtonGroup;
@@ -91,6 +92,11 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
+
+import controller.ImageFileChooser;
+import controller.Translation;
+
+import modele.Image;
 
 /**
  * <code>ApplicationSwing</code> est un exemple d'une
@@ -196,6 +202,12 @@ public class VueTranslation extends JFrame {
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
+			try{
+				Image.getInstance().setImg(ImageFileChooser.getInstance().getSelectedFile(VueTranslation.this));
+				repaint();
+			}catch(IOException except){
+				except.getMessage();
+			}
 		}
 	}
 	
@@ -238,6 +250,8 @@ public class VueTranslation extends JFrame {
 		public CustomCanvas() {
 			setSize(getPreferredSize());
 			setMinimumSize(getPreferredSize());
+			CustomCanvas.this.addMouseListener(new Translation());
+			CustomCanvas.this.addMouseMotionListener(new Translation());
 			CustomCanvas.this.setBackground(Color.white);
 		}
 
@@ -248,10 +262,14 @@ public class VueTranslation extends JFrame {
 		public void paintComponent(Graphics graphics) {
 			super.paintComponent(graphics);
 			Graphics2D g2d = (Graphics2D) graphics;
+			try{//On dessine l'image
+				g2d.drawImage(Image.getInstance().getImg(), Image.getInstance().getPosX(), Image.getInstance().getPosY(), Image.getInstance().getHeigth(), Image.getInstance().getWidth(), null);
+			}catch(Exception ex){
+				ex.getMessage();
+			}
 			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-					RenderingHints.VALUE_ANTIALIAS_ON);
+					RenderingHints.VALUE_ANTIALIAS_ON);	
 
-			
 		}
 	}
 	
@@ -312,7 +330,6 @@ public class VueTranslation extends JFrame {
 	public static void lancer(){
 
 		VueTranslation translation = new VueTranslation();
-		
 		JMenuBar barreMenu = new JMenuBar();
 		barreMenu.add(translation.creerMenuFichier());
 		barreMenu.add(translation.creerMenuOperation());

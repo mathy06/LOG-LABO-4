@@ -78,14 +78,9 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.Locale;
 
-import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -93,6 +88,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
+
+import controller.ImageFileChooser;
+import modele.Image;
 
 /**
  * <code>ApplicationSwing</code> est un exemple d'une
@@ -174,15 +172,12 @@ public class VueStatique extends JFrame {
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
-			//TODO : centraliser cette opération dans le controleur;
-			final JFileChooser fileChooser = new JFileChooser();
-			fileChooser.setLocale(Locale.getDefault());
-			fileChooser.updateUI();
-			fileChooser.setCurrentDirectory(new File("image"));
-			int answer = fileChooser.showOpenDialog(VueStatique.this);
-			/*if(answer == JFileChooser.APPROVE_OPTION){
-				//TODO : récupération de l'image
-				}*/
+			try{
+				Image.getInstance().setImg(ImageFileChooser.getInstance().getSelectedFile(VueStatique.this));
+			}catch(IOException except){
+				 except.getMessage();
+			}
+			repaint();
 		}
 	}
 	
@@ -235,10 +230,14 @@ public class VueStatique extends JFrame {
 		public void paintComponent(Graphics graphics) {
 			super.paintComponent(graphics);
 			Graphics2D g2d = (Graphics2D) graphics;
-			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-					RenderingHints.VALUE_ANTIALIAS_ON);
-
 			
+			try{//on dessine l'image
+				g2d.drawImage(Image.getInstance().getImg(), Image.getInstance().getPosX(), Image.getInstance().getPosY(), Image.getInstance().getHeigth(), Image.getInstance().getWidth(), null);
+			}catch(Exception ex){
+				ex.getMessage();
+			}
+			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+					RenderingHints.VALUE_ANTIALIAS_ON);	
 		}
 	}
 	

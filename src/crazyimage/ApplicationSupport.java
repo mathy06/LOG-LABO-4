@@ -49,10 +49,10 @@ public final class ApplicationSupport {
 
    // disallow direct instantiation
    private ApplicationSupport() {}
-   
    public static void launch(final JFrame jFrame, String title,
                        final int xBounds, final int yBounds, 
                        final int width, int height) {
+	  
       jFrame.setTitle(title);
       jFrame.setBounds(xBounds,yBounds,width,height);
       jFrame.setVisible(true);
@@ -68,9 +68,10 @@ public final class ApplicationSupport {
 
       jFrame.addWindowListener(new WindowAdapter() {
          public void windowClosed(WindowEvent event) {
-            event.getWindow().dispose();
+        	 event.getWindow().dispose();//permet de fermer une fenetre à la fois
          }
       });
+      
    }
    public static Locale getLocale() {
       return locale;

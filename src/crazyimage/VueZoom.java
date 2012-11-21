@@ -81,6 +81,7 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 import javax.swing.AbstractAction;
 import javax.swing.ButtonGroup;
@@ -92,6 +93,11 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
+
+import controller.ImageFileChooser;
+import controller.Zoom;
+
+import modele.Image;
 
 /**
  * <code>ApplicationSwing</code> est un exemple d'une
@@ -197,8 +203,16 @@ public class VueZoom extends JFrame {
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
+			try{
+				Image.getInstance().setImg(ImageFileChooser.getInstance().getSelectedFile(VueZoom.this));
+				repaint();
+			}catch(IOException except){
+				except.getMessage();
+			}
 		}
 	}
+
+	
 	
 	/**
 	 *  Traiter l'item "Quitter".
@@ -240,6 +254,7 @@ public class VueZoom extends JFrame {
 			setSize(getPreferredSize());
 			setMinimumSize(getPreferredSize());
 			CustomCanvas.this.setBackground(Color.white);
+			CustomCanvas.this.addMouseWheelListener(new Zoom());
 		}
 
 		public Dimension getPreferredSize() {
@@ -249,8 +264,13 @@ public class VueZoom extends JFrame {
 		public void paintComponent(Graphics graphics) {
 			super.paintComponent(graphics);
 			Graphics2D g2d = (Graphics2D) graphics;
+			try{
+				g2d.drawImage(Image.getInstance().getImg(), Image.getInstance().getPosX(), Image.getInstance().getPosY(), Image.getInstance().getHeigth(), Image.getInstance().getWidth(), null);
+			}catch(Exception ex){
+				ex.getMessage();
+			}
 			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-					RenderingHints.VALUE_ANTIALIAS_ON);
+					RenderingHints.VALUE_ANTIALIAS_ON);	
 
 			
 		}
