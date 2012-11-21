@@ -37,11 +37,10 @@ import modele.Image;
 public class Zoom implements MouseWheelListener{
 
 	//TODO : Doit changer l'appel à repaint pour qu'il appel l'observer
-	//TODO : l'algorithme ne marche pas dutout
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent whellEvent) {
-		Image.getInstance().setHeigth(Image.getInstance().getHeigth()*whellEvent.getUnitsToScroll()/100);
-		Image.getInstance().setWidth(Image.getInstance().getWidth()*whellEvent.getUnitsToScroll()/100);
+		Image.getInstance().setHeigth(Image.getInstance().getHeigth() + Image.getInstance().getHeigth()/100 *whellEvent.getUnitsToScroll());
+		Image.getInstance().setWidth(Image.getInstance().getWidth() + Image.getInstance().getWidth()/100 *whellEvent.getUnitsToScroll());
 		Image.getInstance().setPosX(Image.getInstance().getPosX());
 		Image.getInstance().setPosY(Image.getInstance().getPosY());
 		whellEvent.getComponent().repaint();
