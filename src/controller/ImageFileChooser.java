@@ -44,13 +44,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class ImageFileChooser {
 	
 	private static final ImageFileChooser INSTANCE = new ImageFileChooser();
-	private JFileChooser fileChoose = new JFileChooser();
-	private String fileName = "";
+	
 	
 	public static ImageFileChooser getInstance(){
 		return INSTANCE;
 	}
-	
+	JFileChooser fileChoose = new JFileChooser();
 	private ImageFileChooser(){
 		
 		FileFilter filtre = new FileNameExtensionFilter("Image", "jpg","jpeg","gif","bmp","png");
@@ -71,12 +70,7 @@ public class ImageFileChooser {
 		String path = "";
 		if(answer == JFileChooser.APPROVE_OPTION){
 			path = fileChoose.getSelectedFile().getAbsolutePath();
-			fileName = fileChoose.getSelectedFile().getName();
 		}
 		return path;
-	}
-	
-	public String getSelectedFileName(Component parent){
-		return fileName;
 	}
 }
