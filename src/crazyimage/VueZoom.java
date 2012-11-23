@@ -89,6 +89,7 @@ import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 
 import modele.Image;
+import modele.PerspectiveModel;
 import controller.Zoom;
 
 import core.ApplicationSupport;
@@ -126,7 +127,7 @@ public class VueZoom extends AbstractVue {
 			super.paintComponent(graphics);
 			Graphics2D g2d = (Graphics2D) graphics;
 			try{//On dessine l'image
-				g2d.drawImage(Image.getInstance().getImg(), Image.getInstance().getPosX(), Image.getInstance().getPosY(), Image.getInstance().getHeigth(), Image.getInstance().getWidth(), null);
+				g2d.drawImage(PerspectiveModel.getInstance().getImg(), PerspectiveModel.getInstance().getPosX(), PerspectiveModel.getInstance().getPosY(), PerspectiveModel.getInstance().getHeigth(), PerspectiveModel.getInstance().getWidth(), null);
 			}catch(Exception ex){
 				ex.getMessage();
 			}

@@ -40,7 +40,7 @@ public class PerspectiveModel {
 		return zoomFactor;
 	}
 	
-	public BufferedImage getImage(){
+	public BufferedImage getImg(){
 		
 		BufferedImage img = null;
 		try{
@@ -49,7 +49,6 @@ public class PerspectiveModel {
 			except.getMessage();
 		}
 		return img;
-		
 	}
 	
 	public void translation(int posX, int posY){
@@ -57,9 +56,9 @@ public class PerspectiveModel {
 		positionY = posY;
 	}
 	public void zoom(int factor){
-		heigth = heigth + heigth/100 * factor;
-		width = width + width/100* factor;
-		zoomFactor = zoomFactor + factor;
+		heigth += heigth/100 * factor;
+		width += width/100* factor;
+		zoomFactor += factor;
 	}
 	public void undo(){}
 }
