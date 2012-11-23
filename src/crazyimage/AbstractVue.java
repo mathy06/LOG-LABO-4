@@ -44,6 +44,7 @@ public abstract class AbstractVue extends JFrame {
 	protected static final char FICHIER_RACC = KeyEvent.VK_F;
 	protected static final char FORME_RACC = KeyEvent.VK_O;
 	protected static final char SAVE_RACC = KeyEvent.VK_S;
+	protected static final char RESTORE_RACC = KeyEvent.VK_R;
 	protected static final char TANSLATION_RACC = KeyEvent.VK_T;
 	protected static final char QUITTER_RACC = KeyEvent.VK_Q;
 	protected static final char AIDE_RACC = KeyEvent.VK_A;
@@ -54,6 +55,7 @@ public abstract class AbstractVue extends JFrame {
 			FICHIER_TITRE = "app.frame.menus.file.title",
 			FICHIER_FORME = "app.frame.menus.file.getshape",
 			FICHIER_SAVE = "app.frame.menus.file.save",
+			FICHIER_RESTORE = "app.frame.menus.file.restore",
 			FICHIER_QUITTER = "app.frame.menus.file.exit",
 			ORDRE_TITRE = "app.frame.menus.order.title",
 			ORDRE_NOSEQASC = "app.frame.menus.order.nosequenceascending",
@@ -118,6 +120,21 @@ public abstract class AbstractVue extends JFrame {
 		
 		public void actionPerformed(ActionEvent arg0) {
 			Serializer.getInstance().serialize(Image.getInstance().getFilename());
+		}
+	}
+	
+	/**
+	 *  Traiter l'item "Restaurer".
+	 */
+	class Restaurer extends AbstractAction {
+		private static final long serialVersionUID = 1L;
+		
+		public Restaurer() {
+			super(ApplicationSupport.getResource(FICHIER_RESTORE));
+		}
+		
+		public void actionPerformed(ActionEvent arg0) {
+			Serializer.getInstance().deserialize();
 		}
 	}
 	
@@ -197,9 +214,13 @@ public abstract class AbstractVue extends JFrame {
 		menu.getItem(1).setAccelerator(KeyStroke.getKeyStroke(SAVE_RACC, CTRL_MASK));
 		menu.getItem(1).setMnemonic(SAVE_RACC);
 		
+		menu.add(new Restaurer());
+		menu.getItem(2).setAccelerator(KeyStroke.getKeyStroke(RESTORE_RACC, CTRL_MASK));
+		menu.getItem(2).setMnemonic(RESTORE_RACC);
+		
 		menu.add(new QuitterAction());
-		menu.getItem(2).setAccelerator(KeyStroke.getKeyStroke(QUITTER_RACC, CTRL_MASK));
-		menu.getItem(2).setMnemonic(QUITTER_RACC);
+		menu.getItem(3).setAccelerator(KeyStroke.getKeyStroke(QUITTER_RACC, CTRL_MASK));
+		menu.getItem(3).setMnemonic(QUITTER_RACC);
 
 		return menu;
 	}
