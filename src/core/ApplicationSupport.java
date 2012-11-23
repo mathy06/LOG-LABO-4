@@ -1,4 +1,4 @@
-package crazyimage;
+package core;
 /*
  * Ce code provient d'un exemple sur Internet, de David Geary, à la page suivante:
  * http://www.javaworld.com/javaworld/jw-05-2003/jw-0530-designpatterns-p2.html

@@ -95,6 +95,7 @@ import javax.swing.KeyStroke;
 
 import controller.ImageFileChooser;
 import controller.Translation;
+import core.ApplicationSupport;
 
 import modele.Image;
 

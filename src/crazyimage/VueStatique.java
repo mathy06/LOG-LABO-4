@@ -90,6 +90,7 @@ import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 
 import controller.ImageFileChooser;
+import core.ApplicationSupport;
 import modele.Image;
 
 /**

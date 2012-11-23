@@ -1,4 +1,8 @@
-package crazyimage;
+package core;
+
+import crazyimage.VueStatique;
+import crazyimage.VueTranslation;
+import crazyimage.VueZoom;
 /******************************************************
 Cours : LOG121
 Session : A2012

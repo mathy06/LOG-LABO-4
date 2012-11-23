@@ -96,6 +96,7 @@ import javax.swing.KeyStroke;
 
 import controller.ImageFileChooser;
 import controller.Zoom;
+import core.ApplicationSupport;
 
 import modele.Image;
 
