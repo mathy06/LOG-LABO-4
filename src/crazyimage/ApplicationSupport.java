@@ -68,7 +68,7 @@ public final class ApplicationSupport {
 
       jFrame.addWindowListener(new WindowAdapter() {
          public void windowClosed(WindowEvent event) {
-        	 event.getWindow().dispose();//permet de fermer une fenetre à la fois
+        	 System.exit(0);
          }
       });
       
