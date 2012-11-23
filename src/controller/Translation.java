@@ -26,8 +26,7 @@ Historique des modifications
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-
-import modele.Image;
+import modele.PerspectiveModel;
 
 /**
  * 
@@ -40,8 +39,8 @@ public class Translation implements MouseMotionListener, MouseListener{
 		//TODO : Doit changer l'appel à repaint pour qu'il appel l'observer
 		@Override
 		public void mouseClicked(MouseEvent mouseEvent) {
-			Image.getInstance().setPosX(mouseEvent.getX());
-			Image.getInstance().setPosY(mouseEvent.getY());
+			
+			PerspectiveModel.getInstance().translation(mouseEvent.getX(), mouseEvent.getY());
 			mouseEvent.getComponent().repaint();
 		}
 		@Override
@@ -50,21 +49,18 @@ public class Translation implements MouseMotionListener, MouseListener{
 		public void mouseExited(MouseEvent mouseEvent) {}
 		@Override
 		public void mousePressed(MouseEvent mouseEvent) {
-			Image.getInstance().setPosX(mouseEvent.getX());
-			Image.getInstance().setPosY(mouseEvent.getY());
+			PerspectiveModel.getInstance().translation(mouseEvent.getX(), mouseEvent.getY());
 			mouseEvent.getComponent().repaint();
 		}
 		@Override
 		public void mouseReleased(MouseEvent mouseEvent) {
-			Image.getInstance().setPosX(mouseEvent.getX());
-			Image.getInstance().setPosY(mouseEvent.getY());
+			PerspectiveModel.getInstance().translation(mouseEvent.getX(), mouseEvent.getY());
 			mouseEvent.getComponent().repaint();	
 		}
 		
 		@Override
 		public void mouseDragged(MouseEvent mouseEvent) {
-			Image.getInstance().setPosX(mouseEvent.getX());
-			Image.getInstance().setPosY(mouseEvent.getY());
+			PerspectiveModel.getInstance().translation(mouseEvent.getX(), mouseEvent.getY());
 			mouseEvent.getComponent().repaint();
 		}
 		@Override

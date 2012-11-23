@@ -27,7 +27,7 @@ Historique des modifications
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
-import modele.Image;
+import modele.PerspectiveModel;
 
 /**
  * Class Zoom implements MouseWhellListener
@@ -39,10 +39,7 @@ public class Zoom implements MouseWheelListener{
 	//TODO : Doit changer l'appel à repaint pour qu'il appel l'observer
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent whellEvent) {
-		Image.getInstance().setHeigth(Image.getInstance().getHeigth() + Image.getInstance().getHeigth()/100 *-whellEvent.getUnitsToScroll());
-		Image.getInstance().setWidth(Image.getInstance().getWidth() + Image.getInstance().getWidth()/100 *-whellEvent.getUnitsToScroll());
-		Image.getInstance().setPosX(Image.getInstance().getPosX());
-		Image.getInstance().setPosY(Image.getInstance().getPosY());
+		PerspectiveModel.getInstance().zoom(-whellEvent.getUnitsToScroll());
 		whellEvent.getComponent().repaint();
 	}
 }
