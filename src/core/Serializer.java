@@ -11,13 +11,26 @@ import modele.Image;
 public class Serializer {
 	
 	Image img;
+	private static Serializer instance;
 	
-	public void serialize(){
+	private Serializer(){}
+	
+	/**
+	 * Retourne l'instance
+	 * @return
+	 */
+	public static Serializer getInstance(){
+		if (instance == null)
+			instance = new Serializer();
+		return instance;
+	}
+	
+	public void serialize(String filename){
 		img = Image.getInstance();
 		
 		try
 	    {
-	       FileOutputStream fileOut = new FileOutputStream("serialize/image.ser");
+	       FileOutputStream fileOut = new FileOutputStream("serialize/"+filename+".ser");
 	       ObjectOutputStream out = new ObjectOutputStream(fileOut);
 	       out.writeObject(img);
 	       out.close();

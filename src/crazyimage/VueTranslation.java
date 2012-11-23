@@ -71,15 +71,24 @@ package crazyimage;
  https://cours.ele.etsmtl.ca/academique/log120/notesdecours/exemples/lab/lab1/ApplicationSwing.zip
 ********************************************************/
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.RenderingHints;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
+
+import modele.Image;
+import controller.Translation;
 
 import core.ApplicationSupport;
 
@@ -96,10 +105,43 @@ public class VueTranslation extends AbstractVue {
 		getContentPane().add(new JScrollPane(new CustomCanvas()));
 	}
 	
+	/**
+	 *  Créer le panneau sur lequel les formes sont dessinées. 
+	 */
+	class CustomCanvas extends JPanel {
+		private static final long serialVersionUID = 1L;
+
+		public CustomCanvas() {
+			setSize(getPreferredSize());
+			setMinimumSize(getPreferredSize());
+			
+			CustomCanvas.this.addMouseListener(new Translation());
+			CustomCanvas.this.addMouseMotionListener(new Translation());
+			CustomCanvas.this.setBackground(Color.white);
+		}
+
+		public Dimension getPreferredSize() {
+			return new Dimension(CANEVAS_LARGEUR, CANEVAS_HAUTEUR);
+		}
+
+		public void paintComponent(Graphics graphics) {
+			super.paintComponent(graphics);
+			Graphics2D g2d = (Graphics2D) graphics;
+			try{//On dessine l'image
+				g2d.drawImage(Image.getInstance().getImg(), Image.getInstance().getPosX(), Image.getInstance().getPosY(), Image.getInstance().getHeigth(), Image.getInstance().getWidth(), null);
+			}catch(Exception ex){
+				ex.getMessage();
+			}
+			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+					RenderingHints.VALUE_ANTIALIAS_ON);	
+
+		}
+	}
+	
 	/* Créer le menu "Ordre". */
 	protected JMenu creerMenuOperation() {
 		JMenu menu = new JMenu(ApplicationSupport.getResource(ORDRE_TITRE));
-		menu.setMnemonic(ORDRE_RACC);
+		menu.setMnemonic(TANSLATION_RACC);
 		
 		groupeOrdre = new ButtonGroup();
 		
@@ -107,8 +149,8 @@ public class VueTranslation extends AbstractVue {
 		JRadioButtonMenuItem translation = new JRadioButtonMenuItem(new ListeOperations(ApplicationSupport.getResource(ORDRE_NOSEQDESC), Ordre.NOSEQDESC));
 		
 		
-		translation.setAccelerator(KeyStroke.getKeyStroke(TANSLATION_OPTION, ORDRE_MASK));
-		translation.setMnemonic(TANSLATION_OPTION);
+		translation.setAccelerator(KeyStroke.getKeyStroke(TANSLATION_RACC, CTRL_MASK));
+		translation.setMnemonic(TANSLATION_RACC);
 
 		groupeOrdre.add(translation);
 		

@@ -72,9 +72,11 @@ package crazyimage;
 ********************************************************/
 
 
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
+
 
 import core.ApplicationSupport;
 
@@ -92,7 +94,6 @@ public class VueStatique extends AbstractVue {
 		getContentPane().add(new JScrollPane(new CustomCanvas()));
 	}
 
-	
 	public static void lancer(){
 
 		VueStatique vue = new VueStatique();

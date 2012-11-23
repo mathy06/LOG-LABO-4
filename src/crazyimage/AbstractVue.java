@@ -19,9 +19,9 @@ import javax.swing.KeyStroke;
 
 import modele.Image;
 import controller.ImageFileChooser;
-import controller.Translation;
 
 import core.ApplicationSupport;
+import core.Serializer;
 
 public abstract class AbstractVue extends JFrame {
 
@@ -38,22 +38,22 @@ public abstract class AbstractVue extends JFrame {
 
 	protected static final int MARGE_V = 60;
 	
+	
+	protected static final int CTRL_MASK = ActionEvent.CTRL_MASK;
+	
 	protected static final char FICHIER_RACC = KeyEvent.VK_F;
-	protected static final int FORME_MASK = ActionEvent.CTRL_MASK;
 	protected static final char FORME_RACC = KeyEvent.VK_O;
-	protected static final int ORDRE_MASK = ActionEvent.CTRL_MASK;
-	protected static final char ORDRE_RACC = KeyEvent.VK_R;
-	protected static final char TANSLATION_OPTION = KeyEvent.VK_S;
-	protected static final int QUITTER_MASK = ActionEvent.CTRL_MASK;
+	protected static final char SAVE_RACC = KeyEvent.VK_S;
+	protected static final char TANSLATION_RACC = KeyEvent.VK_T;
 	protected static final char QUITTER_RACC = KeyEvent.VK_Q;
 	protected static final char AIDE_RACC = KeyEvent.VK_A;
-	protected static final int PROPOS_MASK = ActionEvent.CTRL_MASK;
 	protected static final char PROPOS_RACC = KeyEvent.VK_P;
-	protected static final char ZOOM_OPTION = KeyEvent.VK_N;
+	protected static final char ZOOM_RACC = KeyEvent.VK_N;
 
 	protected static final String
 			FICHIER_TITRE = "app.frame.menus.file.title",
 			FICHIER_FORME = "app.frame.menus.file.getshape",
+			FICHIER_SAVE = "app.frame.menus.file.save",
 			FICHIER_QUITTER = "app.frame.menus.file.exit",
 			ORDRE_TITRE = "app.frame.menus.order.title",
 			ORDRE_NOSEQASC = "app.frame.menus.order.nosequenceascending",
@@ -98,10 +98,26 @@ public abstract class AbstractVue extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			try{
 				Image.getInstance().setImg(ImageFileChooser.getInstance().getSelectedFile(AbstractVue.this));
+				Image.getInstance().setFilename(ImageFileChooser.getInstance().getSelectedFileName(AbstractVue.this));
 				repaint();
 			}catch(IOException except){
 				except.getMessage();
 			}
+		}
+	}
+	
+	/**
+	 *  Traiter l'item "Enregistrer".
+	 */
+	class Enregistrer extends AbstractAction {
+		private static final long serialVersionUID = 1L;
+		
+		public Enregistrer() {
+			super(ApplicationSupport.getResource(FICHIER_SAVE));
+		}
+		
+		public void actionPerformed(ActionEvent arg0) {
+			Serializer.getInstance().serialize(Image.getInstance().getFilename());
 		}
 	}
 	
@@ -144,8 +160,6 @@ public abstract class AbstractVue extends JFrame {
 		public CustomCanvas() {
 			setSize(getPreferredSize());
 			setMinimumSize(getPreferredSize());
-			CustomCanvas.this.addMouseListener(new Translation());
-			CustomCanvas.this.addMouseMotionListener(new Translation());
 			CustomCanvas.this.setBackground(Color.white);
 		}
 
@@ -176,12 +190,16 @@ public abstract class AbstractVue extends JFrame {
 		menu.setMnemonic(FICHIER_RACC);
 		
 		menu.add(new OuvrirImage());
-		menu.getItem(0).setAccelerator(KeyStroke.getKeyStroke(FORME_RACC, FORME_MASK));
+		menu.getItem(0).setAccelerator(KeyStroke.getKeyStroke(FORME_RACC, CTRL_MASK));
 		menu.getItem(0).setMnemonic(FORME_RACC);
 		
+		menu.add(new Enregistrer());
+		menu.getItem(1).setAccelerator(KeyStroke.getKeyStroke(SAVE_RACC, CTRL_MASK));
+		menu.getItem(1).setMnemonic(SAVE_RACC);
+		
 		menu.add(new QuitterAction());
-		menu.getItem(1).setAccelerator(KeyStroke.getKeyStroke(QUITTER_RACC, QUITTER_MASK));
-		menu.getItem(1).setMnemonic(QUITTER_RACC);
+		menu.getItem(2).setAccelerator(KeyStroke.getKeyStroke(QUITTER_RACC, CTRL_MASK));
+		menu.getItem(2).setMnemonic(QUITTER_RACC);
 
 		return menu;
 	}
@@ -192,7 +210,7 @@ public abstract class AbstractVue extends JFrame {
 		menu.setMnemonic(AIDE_RACC);
 
 		menu.add(new AProposDeAction());
-		menu.getItem(0).setAccelerator(KeyStroke.getKeyStroke(PROPOS_RACC, PROPOS_MASK));
+		menu.getItem(0).setAccelerator(KeyStroke.getKeyStroke(PROPOS_RACC, CTRL_MASK));
 		menu.getItem(0).setMnemonic(PROPOS_RACC);
 
 		return menu;

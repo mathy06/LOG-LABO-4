@@ -72,15 +72,24 @@ package crazyimage;
  https://cours.ele.etsmtl.ca/academique/log120/notesdecours/exemples/lab/lab1/ApplicationSwing.zip
 ********************************************************/
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.RenderingHints;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
+
+import modele.Image;
+import controller.Zoom;
 
 import core.ApplicationSupport;
 
@@ -95,11 +104,42 @@ public class VueZoom extends AbstractVue {
 	public VueZoom() {
 		getContentPane().add(new JScrollPane(new CustomCanvas()));
 	}
+	
+	/**
+	 *  Créer le panneau sur lequel les formes sont dessinées. 
+	 */
+	class CustomCanvas extends JPanel {
+		private static final long serialVersionUID = 1L;
+
+		public CustomCanvas() {
+			setSize(getPreferredSize());
+			setMinimumSize(getPreferredSize());
+			CustomCanvas.this.addMouseWheelListener(new Zoom());
+			CustomCanvas.this.setBackground(Color.white);
+		}
+
+		public Dimension getPreferredSize() {
+			return new Dimension(CANEVAS_LARGEUR, CANEVAS_HAUTEUR);
+		}
+
+		public void paintComponent(Graphics graphics) {
+			super.paintComponent(graphics);
+			Graphics2D g2d = (Graphics2D) graphics;
+			try{//On dessine l'image
+				g2d.drawImage(Image.getInstance().getImg(), Image.getInstance().getPosX(), Image.getInstance().getPosY(), Image.getInstance().getHeigth(), Image.getInstance().getWidth(), null);
+			}catch(Exception ex){
+				ex.getMessage();
+			}
+			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+					RenderingHints.VALUE_ANTIALIAS_ON);	
+
+		}
+	}
 
 	/* Créer le menu "Ordre". */
 	protected JMenu creerMenuOperation() {
 		JMenu menu = new JMenu(ApplicationSupport.getResource(ORDRE_TITRE));
-		menu.setMnemonic(ORDRE_RACC);
+		menu.setMnemonic(ZOOM_RACC);
 		
 		groupeOrdre = new ButtonGroup();
 		
@@ -108,8 +148,8 @@ public class VueZoom extends AbstractVue {
 		
 		
 		/* Ajout des raccourcis spécifiques à chaque bouton radio. */
-		zoom.setAccelerator(KeyStroke.getKeyStroke(ZOOM_OPTION, ORDRE_MASK));
-		zoom.setMnemonic(ZOOM_OPTION);
+		zoom.setAccelerator(KeyStroke.getKeyStroke(ZOOM_RACC, CTRL_MASK));
+		zoom.setMnemonic(ZOOM_RACC);
 
 		/* Ajout des boutons radio au groupe de radio bouton. */
 		groupeOrdre.add(zoom);

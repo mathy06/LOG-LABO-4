@@ -37,7 +37,12 @@ import javax.imageio.*;
  * des opérations de changement.
  *
  */
-public class Image {
+public class Image implements java.io.Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3769924102063812946L;
 	
 	private static Image instance;
 	int posX =0; //Position en X de l'image
@@ -45,6 +50,7 @@ public class Image {
 	int width = 500;
 	int heigth =500;
 	BufferedImage bufferImg = null;
+	String filename;
 	
 	
 	private Image(){}
@@ -121,5 +127,12 @@ public class Image {
 			throw new Exception("must load an image before");
 	}
 	
+	public void setFilename(String name){
+		filename = name;
+	}
+	
+	public String getFilename(){
+		return filename;
+	}
 	
 }
