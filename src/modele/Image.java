@@ -37,17 +37,15 @@ import javax.imageio.*;
  * des opérations de changement.
  *
  */
-public class Image {
-	
-
+public class Image extends Subject {
 	
 	private static Image instance;
-	int posX =0; //Position en X de l'image
-	int posY =0; //Position en Y de l'image
-	int width = 500;
-	int heigth =500;
-	BufferedImage bufferImg = null;
-	String filename;
+	private int posX =0; //Position en X de l'image
+	private int posY =0; //Position en Y de l'image
+	private int width = 500;
+	private int heigth =500;
+	private BufferedImage bufferImg = null;
+	private String filename;
 	
 	
 	private Image(){}
@@ -107,6 +105,9 @@ public class Image {
 			setWidth(bufferImg.getWidth());
 		}catch(IOException except){
 			throw except;
+		}
+		finally{
+			notifyObservers();
 		}
 	}
 	

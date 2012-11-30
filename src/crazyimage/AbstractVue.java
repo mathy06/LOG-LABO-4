@@ -23,7 +23,7 @@ import controller.ImageFileChooser;
 import core.ApplicationSupport;
 import core.Serializer;
 
-public abstract class AbstractVue extends JFrame {
+public abstract class AbstractVue extends JFrame implements Observer {
 
 	/**
 	 * 
@@ -236,5 +236,7 @@ public abstract class AbstractVue extends JFrame {
 
 		return menu;
 	}
+	
+	public abstract void update();
 	
 }

@@ -2,7 +2,7 @@ package modele;
 
 import java.awt.image.BufferedImage;
 
-public class PerspectiveModel implements java.io.Serializable {
+public class PerspectiveModel extends Subject implements java.io.Serializable {
 	
 	/**
 	 * 
@@ -58,11 +58,13 @@ public class PerspectiveModel implements java.io.Serializable {
 	public void translation(int posX, int posY){
 		positionX = posX;
 		positionY = posY;
+		notifyObservers();
 	}
 	public void zoom(int factor){
 		heigth += heigth/100 * factor;
 		width += width/100* factor;
 		zoomFactor += factor;
+		notifyObservers();
 	}
 	public void undo(){}
 	
@@ -76,5 +78,6 @@ public class PerspectiveModel implements java.io.Serializable {
 		instance.width = perspec.getWidth();
 		instance.positionX = perspec.getPosX();
 		instance.positionY = perspec.getPosY();
+		notifyObservers();
 	}
 }

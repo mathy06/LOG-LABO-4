@@ -171,10 +171,20 @@ public class VueZoom extends AbstractVue {
 		barreMenu.add(zoom.creerMenuAide());
 		zoom.setJMenuBar(barreMenu);
 		Point centre = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+
+		//Ajout de la vue comme observateur du modèle.
+		PerspectiveModel.getInstance().addObserver(zoom);
+		Image.getInstance().addObserver(zoom);
+
 		/* Lancer l'application. */
 		ApplicationSupport.launch(zoom, ApplicationSupport
 				.getResource("app.frame.titleZoom"), (centre.x - (CANEVAS_LARGEUR / 2)), (centre.y - (CANEVAS_HAUTEUR / 2)), CANEVAS_LARGEUR
 				+ MARGE_H, CANEVAS_HAUTEUR + MARGE_V);
+	}
+	
+	public void update(){
+		repaint();
+		validate();
 	}
 		
 }

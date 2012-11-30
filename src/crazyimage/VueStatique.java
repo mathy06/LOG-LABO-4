@@ -77,6 +77,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 
+import modele.Image;
+
 
 import core.ApplicationSupport;
 
@@ -96,15 +98,19 @@ public class VueStatique extends AbstractVue {
 
 	public static void lancer(){
 
-		VueStatique vue = new VueStatique();
+		VueStatique statique = new VueStatique();
 		
 		JMenuBar barreMenu = new JMenuBar();
-		barreMenu.add(vue.creerMenuFichier());
-		barreMenu.add(vue.creerMenuAide());
-		vue.setJMenuBar(barreMenu);
+		barreMenu.add(statique.creerMenuFichier());
+		barreMenu.add(statique.creerMenuAide());
+		statique.setJMenuBar(barreMenu);
 		//Point centre = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+
+		//Ajout de la vue comme observateur du modèle.
+		Image.getInstance().addObserver(statique);
+		
 		/* Lancer l'application. */
-		ApplicationSupport.launch(vue, ApplicationSupport
+		ApplicationSupport.launch(statique, ApplicationSupport
 				.getResource("app.frame.titleImage"), 0, 0, CANEVAS_LARGEUR
 				+ MARGE_H, CANEVAS_HAUTEUR + MARGE_V);
 	}
@@ -114,6 +120,11 @@ public class VueStatique extends AbstractVue {
 	protected JMenu creerMenuOperation() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void update(){
+		repaint();
+		validate();
 	}
 		
 }

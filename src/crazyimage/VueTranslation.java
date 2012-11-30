@@ -93,7 +93,7 @@ import controller.Translation;
 
 import core.ApplicationSupport;
 
-public class VueTranslation extends AbstractVue {
+public class VueTranslation extends AbstractVue{
 
 
 	/**
@@ -162,17 +162,27 @@ public class VueTranslation extends AbstractVue {
 	
 	public static void lancer(){
 
-		AbstractVue vue = new VueTranslation();
+		AbstractVue translation = new VueTranslation();
 		JMenuBar barreMenu = new JMenuBar();
-		barreMenu.add(vue.creerMenuFichier());
-		barreMenu.add(vue.creerMenuOperation());
-		barreMenu.add(vue.creerMenuAide());
-		vue.setJMenuBar(barreMenu);
+		barreMenu.add(translation.creerMenuFichier());
+		barreMenu.add(translation.creerMenuOperation());
+		barreMenu.add(translation.creerMenuAide());
+		translation.setJMenuBar(barreMenu);
 		Point centre = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
+		
+		//Ajout de la vue comme observateur du modèle.
+		PerspectiveModel.getInstance().addObserver(translation);
+		Image.getInstance().addObserver(translation);
+		
 		/* Lancer l'application. */
-		ApplicationSupport.launch(vue, ApplicationSupport
+		ApplicationSupport.launch(translation, ApplicationSupport
 				.getResource("app.frame.titleTranslation"), (centre.x+(CANEVAS_LARGEUR / 2)), (centre.y - (CANEVAS_HAUTEUR / 2)), CANEVAS_LARGEUR
 				+ MARGE_H, CANEVAS_HAUTEUR + MARGE_V);
+	}
+	
+	public void update() {
+		repaint();
+		validate();
 	}
 }
 
