@@ -46,7 +46,7 @@ public class Serializer {
 		
         try
         {
-           FileInputStream fileIn = new FileInputStream("serialize/"+fileName+".ser");
+           FileInputStream fileIn = new FileInputStream("serialize/"+fileName);
            ObjectInputStream input = new ObjectInputStream(fileIn);
            perspec = (PerspectiveModel)input.readObject();
            PerspectiveModel.getInstance().setProperties(perspec);

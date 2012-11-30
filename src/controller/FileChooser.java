@@ -47,6 +47,7 @@ public class FileChooser {
 	
 	public FileChooser(FileFilter filtre){
 		
+		
 		fileChoose.setLocale(Locale.getDefault());
 		fileChoose.updateUI();
 		fileChoose.setCurrentDirectory(new File("./image"));

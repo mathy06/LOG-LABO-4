@@ -16,11 +16,13 @@ import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import modele.Image;
 import controller.FileChooser;
 
 import core.ApplicationSupport;
+import core.Restore;
 import core.Serializer;
 
 public abstract class AbstractVue extends JFrame implements Observer {
@@ -98,10 +100,13 @@ public abstract class AbstractVue extends JFrame implements Observer {
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
+			
+			FileChooser fileChooser = new FileChooser(new FileNameExtensionFilter("Image", "jpg","jpeg","gif","bmp","png"));
+			
 			try{
-				Image.getInstance().setImg(FileChooser.getInstance().getSelectedFile(AbstractVue.this));
+				Image.getInstance().setImg(fileChooser.getSelectedFile(AbstractVue.this));
 				try {
-					Image.getInstance().setFilename(FileChooser.getInstance().getSelectedFileName(AbstractVue.this));
+					Image.getInstance().setFilename(fileChooser.getSelectedFileName(AbstractVue.this));
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -128,21 +133,7 @@ public abstract class AbstractVue extends JFrame implements Observer {
 		}
 	}
 	
-	/**
-	 *  Traiter l'item "Restaurer".
-	 */
-	class Restaurer extends AbstractAction {
-		private static final long serialVersionUID = 1L;
 		
-		public Restaurer() {
-			super(ApplicationSupport.getResource(FICHIER_RESTORE));
-		}
-		
-		public void actionPerformed(ActionEvent arg0) {
-			Serializer.getInstance().deserialize(Image.getInstance().getFilename());
-		}
-	}
-	
 	/**
 	 *  Traiter l'item "Quitter".
 	 */
@@ -222,7 +213,7 @@ public abstract class AbstractVue extends JFrame implements Observer {
 		menu.getItem(1).setAccelerator(KeyStroke.getKeyStroke(SAVE_RACC, CTRL_MASK));
 		menu.getItem(1).setMnemonic(SAVE_RACC);
 		
-		menu.add(new Restaurer());
+		menu.add(new Restore(AbstractVue.this));
 		menu.getItem(2).setAccelerator(KeyStroke.getKeyStroke(RESTORE_RACC, CTRL_MASK));
 		menu.getItem(2).setMnemonic(RESTORE_RACC);
 		
