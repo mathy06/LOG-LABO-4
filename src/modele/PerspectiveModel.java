@@ -2,6 +2,8 @@ package modele;
 
 import java.awt.image.BufferedImage;
 
+import core.Memento;
+
 public class PerspectiveModel extends Subject implements java.io.Serializable {
 	
 	/**
@@ -11,7 +13,7 @@ public class PerspectiveModel extends Subject implements java.io.Serializable {
 	private static PerspectiveModel instance;
 	private int positionX = 0;
 	private int positionY = 0;
-	private int heigth = 0;
+	private int height = 0;
 	private int width = 0;
 	private int zoomFactor =0;
 	
@@ -24,7 +26,7 @@ public class PerspectiveModel extends Subject implements java.io.Serializable {
 	private PerspectiveModel(){
 		positionX = Image.getInstance().getPosX();
 		positionY = Image.getInstance().getPosY();
-		heigth = Image.getInstance().getHeigth();
+		height = Image.getInstance().getHeigth();
 		width = Image.getInstance().getWidth();
 	}
 	
@@ -35,9 +37,9 @@ public class PerspectiveModel extends Subject implements java.io.Serializable {
 		return positionY;
 	}
 	public int getHeigth(){
-		if(heigth == -1)
-			heigth = Image.getInstance().getHeigth();
-		return heigth;
+		if(height == -1)
+			height = Image.getInstance().getHeigth();
+		return height;
 	}
 	public int getWidth(){
 		if(width == -1)
@@ -65,7 +67,7 @@ public class PerspectiveModel extends Subject implements java.io.Serializable {
 		notifyObservers();
 	}
 	public void zoom(int factor){
-		heigth += heigth/100 * factor;
+		height += height/100 * factor;
 		width += width/100* factor;
 		zoomFactor += factor;
 		notifyObservers();
@@ -78,10 +80,23 @@ public class PerspectiveModel extends Subject implements java.io.Serializable {
 	 * d'un objet Perspective model à un autre.
 	 */
 	public void setProperties(PerspectiveModel perspec){
-		instance.heigth = perspec.getHeigth();
+		instance.height = perspec.getHeigth();
 		instance.width = perspec.getWidth();
 		instance.positionX = perspec.getPosX();
 		instance.positionY = perspec.getPosY();
+		notifyObservers();
+	}
+	
+	public Memento getMemento(){
+		return new Memento(positionX, positionY, height, width, zoomFactor);
+	}
+	
+	public void setMemento(Memento memento){
+		positionX = memento.getPositionX();
+		positionY = memento.getPositionY();
+		height = memento.getHeight();
+		width = memento.getWidth();
+		zoomFactor = memento.getZoom();
 		notifyObservers();
 	}
 }
