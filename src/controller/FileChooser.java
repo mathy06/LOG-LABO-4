@@ -30,7 +30,6 @@ import java.util.Locale;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
@@ -43,25 +42,17 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class FileChooser {
 	
-	private static final FileChooser INSTANCE = new FileChooser();
 	private JFileChooser fileChoose = new JFileChooser();
-	private String fileName = "";
+	private String fileName;
 	
-	public static FileChooser getInstance(){
-		return INSTANCE;
-	}
-	
-	private FileChooser(){
+	public FileChooser(FileFilter filtre){
 		
-		FileFilter filtre = new FileNameExtensionFilter("Image", "jpg","jpeg","gif","bmp","png");
-		FileFilter filtreSerializer = new FileNameExtensionFilter("Serialize", "ser");
 		fileChoose.setLocale(Locale.getDefault());
 		fileChoose.updateUI();
 		fileChoose.setCurrentDirectory(new File("./image"));
-		fileChoose.setDialogTitle("Choix de l'image");
+		fileChoose.setDialogTitle("Choix du fichier");
 		fileChoose.setApproveButtonText("Charger");
 		fileChoose.addChoosableFileFilter(filtre);
-		fileChoose.addChoosableFileFilter(filtreSerializer);
 	}
 	
 	private int open(Component parent){
