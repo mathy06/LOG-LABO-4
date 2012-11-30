@@ -35,9 +35,13 @@ public class PerspectiveModel extends Subject implements java.io.Serializable {
 		return positionY;
 	}
 	public int getHeigth(){
+		if(heigth == -1)
+			heigth = Image.getInstance().getHeigth();
 		return heigth;
 	}
 	public int getWidth(){
+		if(width == -1)
+			width = Image.getInstance().getWidth();
 		return width;
 	}
 	public int getZoomFactor(){

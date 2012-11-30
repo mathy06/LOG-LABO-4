@@ -42,8 +42,8 @@ public class Image extends Subject {
 	private static Image instance;
 	private int posX =0; //Position en X de l'image
 	private int posY =0; //Position en Y de l'image
-	private int width = 500;
-	private int heigth =500;
+	private int width =-1;
+	private int heigth =-1;
 	private BufferedImage bufferImg = null;
 	private String filename;
 	

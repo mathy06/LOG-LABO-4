@@ -193,7 +193,10 @@ public abstract class AbstractVue extends JFrame implements Observer {
 			super.paintComponent(graphics);
 			Graphics2D g2d = (Graphics2D) graphics;
 			try{//On dessine l'image
-				g2d.drawImage(Image.getInstance().getImg(), Image.getInstance().getPosX(), Image.getInstance().getPosY(), Image.getInstance().getHeigth(), Image.getInstance().getWidth(), null);
+				g2d.drawImage(Image.getInstance().getImg(), Image.getInstance().getPosX(), 
+							  Image.getInstance().getPosY(), Image.getInstance().getWidth(), 
+							  Image.getInstance().getHeigth(), null);
+				
 			}catch(Exception ex){
 				ex.getMessage();
 			}

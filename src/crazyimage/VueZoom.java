@@ -127,7 +127,9 @@ public class VueZoom extends AbstractVue {
 			super.paintComponent(graphics);
 			Graphics2D g2d = (Graphics2D) graphics;
 			try{//On dessine l'image
-				g2d.drawImage(PerspectiveModel.getInstance().getImg(), PerspectiveModel.getInstance().getPosX(), PerspectiveModel.getInstance().getPosY(), PerspectiveModel.getInstance().getHeigth(), PerspectiveModel.getInstance().getWidth(), null);
+				g2d.drawImage(PerspectiveModel.getInstance().getImg(), PerspectiveModel.getInstance().getPosX(), 
+							  PerspectiveModel.getInstance().getPosY(), PerspectiveModel.getInstance().getWidth(), 
+							  PerspectiveModel.getInstance().getHeigth(), null);
 			}catch(Exception ex){
 				ex.getMessage();
 			}
