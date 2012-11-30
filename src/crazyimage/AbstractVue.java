@@ -134,7 +134,7 @@ public abstract class AbstractVue extends JFrame {
 		}
 		
 		public void actionPerformed(ActionEvent arg0) {
-			Serializer.getInstance().deserialize();
+			Serializer.getInstance().deserialize(Image.getInstance().getFilename());
 		}
 	}
 	

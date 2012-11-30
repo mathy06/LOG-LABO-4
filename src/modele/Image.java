@@ -37,12 +37,9 @@ import javax.imageio.*;
  * des opérations de changement.
  *
  */
-public class Image implements java.io.Serializable{
+public class Image {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3769924102063812946L;
+
 	
 	private static Image instance;
 	int posX =0; //Position en X de l'image

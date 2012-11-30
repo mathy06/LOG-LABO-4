@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import modele.Image;
+import modele.PerspectiveModel;
 
 public class Serializer {
 	
-	Image img;
+	PerspectiveModel perspec;
 	private static Serializer instance;
 	
 	private Serializer(){}
@@ -26,13 +26,13 @@ public class Serializer {
 	}
 	
 	public void serialize(String filename){
-		img = Image.getInstance();
+		perspec = PerspectiveModel.getInstance();
 		
 		try
 	    {
 	       FileOutputStream fileOut = new FileOutputStream("serialize/"+filename+".ser");
 	       ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	       out.writeObject(img);
+	       out.writeObject(perspec);
 	       out.close();
 	       fileOut.close();
 	    }catch(IOException i){
@@ -41,14 +41,15 @@ public class Serializer {
 		
 	}
 	
-	public void deserialize(){
-		img = null;
+	public void deserialize(String fileName){
+		perspec = null;
 		
         try
         {
-           FileInputStream fileIn = new FileInputStream("serialize/image.ser");
+           FileInputStream fileIn = new FileInputStream("serialize/"+fileName+".ser");
            ObjectInputStream input = new ObjectInputStream(fileIn);
-           img = (Image)input.readObject();
+           perspec = (PerspectiveModel)input.readObject();
+           PerspectiveModel.getInstance().setProperties(perspec);
            input.close();
            fileIn.close();
        }catch(IOException i){

@@ -2,14 +2,18 @@ package modele;
 
 import java.awt.image.BufferedImage;
 
-public class PerspectiveModel {
+public class PerspectiveModel implements java.io.Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static PerspectiveModel instance;
-	private int positionX;
-	private int positionY;
-	private int heigth;
-	private int width;
-	private int zoomFactor;
+	private int positionX = 0;
+	private int positionY = 0;
+	private int heigth = 0;
+	private int width = 0;
+	private int zoomFactor =0;
 	
 	public static PerspectiveModel getInstance(){
 		if (instance == null)
@@ -61,4 +65,16 @@ public class PerspectiveModel {
 		zoomFactor += factor;
 	}
 	public void undo(){}
+	
+	/*
+	 * Méthode setProperties(PerspectiveModel)
+	 * Méthode servant à copier les propriétés
+	 * d'un objet Perspective model à un autre.
+	 */
+	public void setProperties(PerspectiveModel perspec){
+		instance.heigth = perspec.getHeigth();
+		instance.width = perspec.getWidth();
+		instance.positionX = perspec.getPosX();
+		instance.positionY = perspec.getPosY();
+	}
 }
