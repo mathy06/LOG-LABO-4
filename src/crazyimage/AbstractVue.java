@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import modele.Image;
-import controller.ImageFileChooser;
+import controller.FileChooser;
 
 import core.ApplicationSupport;
 import core.Serializer;
@@ -99,9 +99,9 @@ public abstract class AbstractVue extends JFrame implements Observer {
 		
 		public void actionPerformed(ActionEvent arg0) {
 			try{
-				Image.getInstance().setImg(ImageFileChooser.getInstance().getSelectedFile(AbstractVue.this));
+				Image.getInstance().setImg(FileChooser.getInstance().getSelectedFile(AbstractVue.this));
 				try {
-					Image.getInstance().setFilename(ImageFileChooser.getInstance().getSelectedFileName(AbstractVue.this));
+					Image.getInstance().setFilename(FileChooser.getInstance().getSelectedFileName(AbstractVue.this));
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
