@@ -125,8 +125,15 @@ public class Image extends Subject {
 			throw new Exception("must load an image before");
 	}
 	
-	public void setFilename(String name){
-		filename = name;
+	public void setFilename(String name) throws Exception{
+		
+		int index = name.lastIndexOf('.');
+		if (index>0 && index <= name.length() - 2 ) {
+			filename = name.substring(0, index);
+		}
+		else
+			throw new Exception("L'image n'a pas une extension valide");
+		
 	}
 	
 	public String getFilename(){
