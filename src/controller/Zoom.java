@@ -24,9 +24,14 @@ Historique des modifications
 * 			   implémentation du listener MouseWhell
 ********************************************************/
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
+import javax.swing.JOptionPane;
+
+import modele.Image;
 import modele.PerspectiveModel;
 
 /**
@@ -34,12 +39,29 @@ import modele.PerspectiveModel;
  * Classe permettant d'effectuer des opérations
  * de zoom sur une image préchargé
  */
-public class Zoom implements MouseWheelListener{
+public class Zoom implements MouseWheelListener, ActionListener{
 
 	//TODO : Doit changer l'appel à repaint pour qu'il appel l'observer
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent whellEvent) {
 		PerspectiveModel.getInstance().zoom(-whellEvent.getUnitsToScroll());
 		whellEvent.getComponent().repaint();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		try{
+			Image.getInstance().getImg();
+			String answer = "";
+			answer = JOptionPane.showInputDialog("Entrer la position voulu avec un \";\" entre les coordonné");
+			PerspectiveModel.getInstance().percentZoom(Integer.parseInt(answer));
+		}catch(NullPointerException except){
+			except.getMessage();
+		}catch(NumberFormatException except){
+			JOptionPane.showMessageDialog(null, "Vous devez entrer un nombre entier");
+		} catch (Exception except) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "Vous devez dabord charger une image");
+		}
 	}
 }

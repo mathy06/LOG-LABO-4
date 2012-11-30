@@ -79,11 +79,11 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.RenderingHints;
 
-import javax.swing.ButtonGroup;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 
@@ -146,16 +146,13 @@ public class VueTranslation extends AbstractVue{
 		JMenu menu = new JMenu(ApplicationSupport.getResource(ORDRE_TITRE));
 		menu.setMnemonic(TANSLATION_RACC);
 		
-		groupeOrdre = new ButtonGroup();
 		
 		/* Création de JRadtioButtonMenuItem. */
-		JRadioButtonMenuItem translation = new JRadioButtonMenuItem(new ListeOperations(ApplicationSupport.getResource(ORDRE_NOSEQDESC), Ordre.NOSEQDESC));
+		JMenuItem translation = new JMenuItem(new ListeOperations(ApplicationSupport.getResource(ORDRE_NOSEQDESC), Ordre.NOSEQDESC));
 		
-		
+		translation.addActionListener(new Translation());
 		translation.setAccelerator(KeyStroke.getKeyStroke(TANSLATION_RACC, CTRL_MASK));
 		translation.setMnemonic(TANSLATION_RACC);
-
-		groupeOrdre.add(translation);
 		
 		menu.add(translation);
 

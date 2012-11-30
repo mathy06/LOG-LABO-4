@@ -80,11 +80,12 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.RenderingHints;
 
-import javax.swing.ButtonGroup;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JRadioButtonMenuItem;
+
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 
@@ -144,18 +145,15 @@ public class VueZoom extends AbstractVue {
 		JMenu menu = new JMenu(ApplicationSupport.getResource(ORDRE_TITRE));
 		menu.setMnemonic(ZOOM_RACC);
 		
-		groupeOrdre = new ButtonGroup();
-		
 		/* Création de JRadtioButtonMenuItem. */
-		JRadioButtonMenuItem zoom = new JRadioButtonMenuItem(new ListeOperations(ApplicationSupport.getResource(ORDRE_NOSEQASC), Ordre.NOSEQASC));
+		JMenuItem zoom = new JMenuItem(new ListeOperations(ApplicationSupport.getResource(ORDRE_NOSEQASC), Ordre.NOSEQASC));
 		
 		
 		/* Ajout des raccourcis spécifiques à chaque bouton radio. */
+		zoom.addActionListener(new Zoom());
 		zoom.setAccelerator(KeyStroke.getKeyStroke(ZOOM_RACC, CTRL_MASK));
 		zoom.setMnemonic(ZOOM_RACC);
 
-		/* Ajout des boutons radio au groupe de radio bouton. */
-		groupeOrdre.add(zoom);
 		
 		/* Ajout des boutons radio au menu. */
 		menu.add(zoom);

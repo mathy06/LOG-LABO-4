@@ -23,9 +23,15 @@ Historique des modifications
 * 2012-11-21 : Création de la classe
 ********************************************************/
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+
+import javax.swing.JOptionPane;
+
+import modele.Image;
 import modele.PerspectiveModel;
 
 /**
@@ -34,7 +40,7 @@ import modele.PerspectiveModel;
  *Cette classe permet d'effectuer un changement de position sur 
  *une image préchargé
  */
-public class Translation implements MouseMotionListener, MouseListener{
+public class Translation implements MouseMotionListener, MouseListener, ActionListener{
 
 		//TODO : Doit changer l'appel à repaint pour qu'il appel l'observer
 		@Override
@@ -65,4 +71,24 @@ public class Translation implements MouseMotionListener, MouseListener{
 		}
 		@Override
 		public void mouseMoved(MouseEvent mouseEvent) {}
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			try{
+				Image.getInstance().getImg();
+				String answer = "";
+				while(!answer.contains(";")){
+					answer = JOptionPane.showInputDialog("Entrer la position voulu avec un \";\" entre les coordonné");
+				}
+				String[] coor = answer.split(";");
+				PerspectiveModel.getInstance().translation(Integer.parseInt(coor[0]), Integer.parseInt(coor[1]));
+			}catch(NullPointerException except){
+				except.getMessage();
+			}catch(NumberFormatException except){
+				JOptionPane.showMessageDialog(null, "Vous devez entrer un nombre entier");
+			} catch (Exception except) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, "Vous devez dabord charger une image");
+			}
+			
+		}
 }

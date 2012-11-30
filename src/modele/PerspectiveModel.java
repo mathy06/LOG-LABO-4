@@ -72,6 +72,13 @@ public class PerspectiveModel extends Subject implements java.io.Serializable {
 		zoomFactor += factor;
 		notifyObservers();
 	}
+	
+	public void percentZoom(int percent){
+		height = Image.getInstance().getHeigth() * percent/100;
+		width  = Image.getInstance().getWidth() * percent/100;
+		zoomFactor = percent;
+		notifyObservers();
+	}
 	public void undo(){}
 	
 	/*
