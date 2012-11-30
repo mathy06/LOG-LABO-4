@@ -50,7 +50,7 @@ public class FileChooser {
 		
 		fileChoose.setLocale(Locale.getDefault());
 		fileChoose.updateUI();
-		fileChoose.setCurrentDirectory(new File("./image"));
+		fileChoose.setCurrentDirectory(new File("./"));
 		fileChoose.setDialogTitle("Choix du fichier");
 		fileChoose.setApproveButtonText("Charger");
 		fileChoose.addChoosableFileFilter(filtre);
