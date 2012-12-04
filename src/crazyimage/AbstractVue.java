@@ -22,6 +22,7 @@ import modele.Image;
 import controller.FileChooser;
 
 import core.ApplicationSupport;
+import core.OuvrirImageAction;
 import core.RedoAction;
 import core.Restore;
 import core.Serializer;
@@ -59,7 +60,6 @@ public abstract class AbstractVue extends JFrame implements Observer {
 
 	protected static final String
 			FICHIER_TITRE = "app.frame.menus.file.title",
-			FICHIER_FORME = "app.frame.menus.file.getshape",
 			FICHIER_SAVE = "app.frame.menus.file.save",
 			FICHIER_RESTORE = "app.frame.menus.file.restore",
 			FICHIER_UNDO = "app.frame.menus.file.undo",
@@ -94,36 +94,7 @@ public abstract class AbstractVue extends JFrame implements Observer {
 			validate();
 		}
 	}
-	
-	/**
-	 *  Traiter l'item "Obtenir formes".
-	 */
-	class OuvrirImage extends AbstractAction {
-		private static final long serialVersionUID = 1L;
 		
-		public OuvrirImage() {
-			super(ApplicationSupport.getResource(FICHIER_FORME));
-		}
-		
-		public void actionPerformed(ActionEvent arg0) {
-			
-			FileChooser fileChooser = new FileChooser(new FileNameExtensionFilter("Image", "jpg","jpeg","gif","bmp","png"));
-			
-			try{
-				Image.getInstance().setImg(fileChooser.getSelectedFile(AbstractVue.this));
-				try {
-					Image.getInstance().setFilename(fileChooser.getSelectedFileName(AbstractVue.this));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				repaint();
-			}catch(IOException except){
-				except.getMessage();
-			}
-		}
-	}
-	
 	/**
 	 *  Traiter l'item "Enregistrer".
 	 */
@@ -211,7 +182,7 @@ public abstract class AbstractVue extends JFrame implements Observer {
 		JMenu menu = new JMenu(ApplicationSupport.getResource(FICHIER_TITRE));
 		menu.setMnemonic(FICHIER_RACC);
 		
-		menu.add(new OuvrirImage());
+		menu.add(new OuvrirImageAction(AbstractVue.this));
 		menu.getItem(0).setAccelerator(KeyStroke.getKeyStroke(FORME_RACC, CTRL_MASK));
 		menu.getItem(0).setMnemonic(FORME_RACC);
 		
