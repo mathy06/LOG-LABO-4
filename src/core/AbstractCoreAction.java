@@ -9,6 +9,7 @@ public abstract class AbstractCoreAction extends AbstractAction{
 	private static final long serialVersionUID = 1L;
 	private Memento memento;
 	
+	
 	public AbstractCoreAction(String resource) {
 		super(resource);
 	}
