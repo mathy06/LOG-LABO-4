@@ -119,6 +119,7 @@ public class VueZoom extends AbstractVue {
 			CustomCanvas.this.addMouseWheelListener(new Zoom("Zoom"));
 			CustomCanvas.this.setBackground(Color.white);
 		}
+		
 
 		public Dimension getPreferredSize() {
 			return new Dimension(CANEVAS_LARGEUR, CANEVAS_HAUTEUR);

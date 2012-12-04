@@ -11,14 +11,13 @@ import controller.FileChooser;
 public class OuvrirImageAction extends AbstractCoreAction {
 	
 	private static final long serialVersionUID = 1L;
-	protected static final String FICHIER_FORME = "app.frame.menus.file.ouvrir";
+	protected static final String FICHIER_FORME = "app.frame.menus.file.getshape";
 	Component parent;
 	
 	public OuvrirImageAction(Component comp) {
 		super(ApplicationSupport.getResource(FICHIER_FORME));
 		parent = comp;
 	}
-	
 
 	@Override
 	public void executeAction() {
