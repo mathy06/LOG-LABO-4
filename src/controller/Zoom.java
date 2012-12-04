@@ -31,6 +31,9 @@ import java.awt.event.MouseWheelListener;
 
 import javax.swing.JOptionPane;
 
+import core.AbstractCoreAction;
+import core.ActionGestion;
+
 import modele.Image;
 import modele.PerspectiveModel;
 
@@ -39,21 +42,26 @@ import modele.PerspectiveModel;
  * Classe permettant d'effectuer des opérations
  * de zoom sur une image préchargé
  */
-public class Zoom implements MouseWheelListener, ActionListener{
+public class Zoom extends AbstractCoreAction implements MouseWheelListener{
+
+	public Zoom(String ressource) {
+		super(ressource);
+	}
 
 	//TODO : Doit changer l'appel à repaint pour qu'il appel l'observer
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent whellEvent) {
 		PerspectiveModel.getInstance().zoom(-whellEvent.getUnitsToScroll());
-		whellEvent.getComponent().repaint();
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void executeAction() {
 		try{
+			
 			Image.getInstance().getImg();
 			String answer = "";
 			answer = JOptionPane.showInputDialog("Entrer la position voulu avec un \";\" entre les coordonné");
+			ActionGestion.addAction((AbstractCoreAction) this.clone());
 			PerspectiveModel.getInstance().percentZoom(Integer.parseInt(answer));
 		}catch(NullPointerException except){
 			except.getMessage();

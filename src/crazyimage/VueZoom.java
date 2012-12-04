@@ -116,7 +116,7 @@ public class VueZoom extends AbstractVue {
 		public CustomCanvas() {
 			setSize(getPreferredSize());
 			setMinimumSize(getPreferredSize());
-			CustomCanvas.this.addMouseWheelListener(new Zoom());
+			CustomCanvas.this.addMouseWheelListener(new Zoom("Zoom"));
 			CustomCanvas.this.setBackground(Color.white);
 		}
 
@@ -150,7 +150,7 @@ public class VueZoom extends AbstractVue {
 		
 		
 		/* Ajout des raccourcis spécifiques à chaque bouton radio. */
-		zoom.addActionListener(new Zoom());
+		zoom.addActionListener(new Zoom("Zoom"));
 		zoom.setAccelerator(KeyStroke.getKeyStroke(ZOOM_RACC, CTRL_MASK));
 		zoom.setMnemonic(ZOOM_RACC);
 

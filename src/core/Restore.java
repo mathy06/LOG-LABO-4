@@ -8,7 +8,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.FileChooser;
 
-public class Restore extends AbstractAction{
+public class Restore extends AbstractCoreAction{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -19,8 +19,9 @@ public class Restore extends AbstractAction{
 		super(ApplicationSupport.getResource(FICHIER_RESTORE));
 		parent = comp;
 	}
-	
-	public void actionPerformed(ActionEvent arg0) {
+
+	@Override
+	public void executeAction() {
 		
 		FileChooser fileChooser = new FileChooser(new FileNameExtensionFilter("Serialize", "ser"));
 		fileChooser.getSelectedFile(parent);
@@ -31,10 +32,8 @@ public class Restore extends AbstractAction{
 			if(filename != null)
 				Serializer.getInstance().deserialize(filename);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 }
