@@ -14,6 +14,7 @@ public abstract class AbstractCoreAction extends AbstractAction{
 		super(resource);
 	}
 
+
 	public void undo(){
 		Memento memento_redo = PerspectiveModel.getInstance().getMemento();
 		PerspectiveModel.getInstance().setMemento(memento);

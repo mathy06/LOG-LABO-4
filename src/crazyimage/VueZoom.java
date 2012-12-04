@@ -147,7 +147,7 @@ public class VueZoom extends AbstractVue {
 		menu.setMnemonic(ZOOM_RACC);
 		
 		/* Création de JRadtioButtonMenuItem. */
-		JMenuItem zoom = new JMenuItem(new ListeOperations(ApplicationSupport.getResource(ORDRE_NOSEQASC), Ordre.NOSEQASC));
+		JMenuItem zoom = new JMenuItem(new SecondaryMenu(ApplicationSupport.getResource(ORDRE_NOSEQASC)));
 		
 		
 		/* Ajout des raccourcis spécifiques à chaque bouton radio. */

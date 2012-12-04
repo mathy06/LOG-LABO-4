@@ -75,10 +75,10 @@ public abstract class AbstractVue extends JFrame implements Observer {
 	/**
 	 * Traiter les items du menu "Ordre".
 	 */
-	class ListeOperations extends AbstractAction{
+	class SecondaryMenu extends AbstractAction{
 		private static final long serialVersionUID = 1L;
 		
-		public ListeOperations(String menuItemTitle, Ordre ordreTri){
+		public SecondaryMenu(String menuItemTitle){
 			super(menuItemTitle);
 		}
 		

@@ -19,6 +19,7 @@ public class OuvrirImageAction extends AbstractCoreAction {
 		parent = comp;
 	}
 
+	
 	@Override
 	public void executeAction() {
 

@@ -148,7 +148,7 @@ public class VueTranslation extends AbstractVue{
 		
 		
 		/* Création de JRadtioButtonMenuItem. */
-		JMenuItem translation = new JMenuItem(new ListeOperations(ApplicationSupport.getResource(ORDRE_NOSEQDESC), Ordre.NOSEQDESC));
+		JMenuItem translation = new JMenuItem(new SecondaryMenu(ApplicationSupport.getResource(ORDRE_NOSEQDESC)));
 		
 		translation.addActionListener(new Translation());
 		translation.setAccelerator(KeyStroke.getKeyStroke(TANSLATION_RACC, CTRL_MASK));
