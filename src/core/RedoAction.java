@@ -3,7 +3,7 @@ package core;
 import java.awt.event.ActionEvent;
 
 public class RedoAction {
-	
+		
 	private static final long serialVersionUID = 1L;
 	private static RedoAction instance;
 
