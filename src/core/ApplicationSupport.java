@@ -71,7 +71,6 @@ public final class ApplicationSupport {
         	 System.exit(0);
          }
       });
-      
    }
    public static Locale getLocale() {
       return locale;

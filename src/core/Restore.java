@@ -16,6 +16,7 @@ public class Restore extends AbstractCoreAction{
 		super(ApplicationSupport.getResource(FICHIER_RESTORE));
 		parent = comp;
 	}
+	
 
 	@Override
 	public void executeAction() {

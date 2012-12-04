@@ -14,7 +14,6 @@ public class EnregistrerAction extends AbstractCoreAction {
 		parent = comp;
 	}
 	
-
 	@Override
 	public void executeAction() {
 		Serializer.getInstance().serialize(Image.getInstance().getFilename());
