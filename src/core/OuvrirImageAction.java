@@ -9,7 +9,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import modele.Image;
 import controller.FileChooser;
-import crazyimage.AbstractVue;
 
 public class OuvrirImageAction extends AbstractAction {
 	

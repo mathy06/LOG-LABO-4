@@ -22,6 +22,7 @@ import modele.Image;
 import controller.FileChooser;
 
 import core.ApplicationSupport;
+import core.EnregistrerAction;
 import core.OuvrirImageAction;
 import core.RedoAction;
 import core.Restore;
@@ -60,7 +61,6 @@ public abstract class AbstractVue extends JFrame implements Observer {
 
 	protected static final String
 			FICHIER_TITRE = "app.frame.menus.file.title",
-			FICHIER_SAVE = "app.frame.menus.file.save",
 			FICHIER_RESTORE = "app.frame.menus.file.restore",
 			FICHIER_UNDO = "app.frame.menus.file.undo",
 			FICHIER_REDO = "app.frame.menus.file.redo",
@@ -92,21 +92,6 @@ public abstract class AbstractVue extends JFrame implements Observer {
 			//On rafraichit l'écran
 			repaint();
 			validate();
-		}
-	}
-		
-	/**
-	 *  Traiter l'item "Enregistrer".
-	 */
-	class Enregistrer extends AbstractAction {
-		private static final long serialVersionUID = 1L;
-		
-		public Enregistrer() {
-			super(ApplicationSupport.getResource(FICHIER_SAVE));
-		}
-		
-		public void actionPerformed(ActionEvent arg0) {
-			Serializer.getInstance().serialize(Image.getInstance().getFilename());
 		}
 	}
 	
@@ -186,7 +171,7 @@ public abstract class AbstractVue extends JFrame implements Observer {
 		menu.getItem(0).setAccelerator(KeyStroke.getKeyStroke(FORME_RACC, CTRL_MASK));
 		menu.getItem(0).setMnemonic(FORME_RACC);
 		
-		menu.add(new Enregistrer());
+		menu.add(new EnregistrerAction(AbstractVue.this));
 		menu.getItem(1).setAccelerator(KeyStroke.getKeyStroke(SAVE_RACC, CTRL_MASK));
 		menu.getItem(1).setMnemonic(SAVE_RACC);
 		
