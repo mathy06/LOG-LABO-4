@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 
 import javax.swing.AbstractAction;
 import javax.swing.ButtonGroup;
@@ -16,18 +15,14 @@ import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import modele.Image;
-import controller.FileChooser;
 
 import core.ApplicationSupport;
 import core.EnregistrerAction;
 import core.OuvrirImageAction;
-import core.RedoAction;
+import core.QuitterAction;
 import core.Restore;
-import core.Serializer;
-import core.UndoAction;
 
 public abstract class AbstractVue extends JFrame implements Observer {
 
@@ -64,7 +59,6 @@ public abstract class AbstractVue extends JFrame implements Observer {
 			FICHIER_RESTORE = "app.frame.menus.file.restore",
 			FICHIER_UNDO = "app.frame.menus.file.undo",
 			FICHIER_REDO = "app.frame.menus.file.redo",
-			FICHIER_QUITTER = "app.frame.menus.file.exit",
 			ORDRE_TITRE = "app.frame.menus.order.title",
 			ORDRE_NOSEQASC = "app.frame.menus.order.nosequenceascending",
 			ORDRE_NOSEQDESC = "app.frame.menus.order.nosequencedescending",
@@ -94,23 +88,7 @@ public abstract class AbstractVue extends JFrame implements Observer {
 			validate();
 		}
 	}
-	
 		
-	/**
-	 *  Traiter l'item "Quitter".
-	 */
-	class QuitterAction extends AbstractAction {
-		private static final long serialVersionUID = 1L;
-		
-		public QuitterAction() {
-			super(ApplicationSupport.getResource(FICHIER_QUITTER));
-		}
-		
-		public void actionPerformed(ActionEvent arg0) {
-			System.exit(0);
-		}
-	}
-	
 	/** 
 	 * Traiter l'item "A propos". 
 	 */
@@ -189,7 +167,7 @@ public abstract class AbstractVue extends JFrame implements Observer {
 		menu.getItem(4).setMnemonic(REDO_RACC);
 		//menu.getItem(4).setAction(RedoAction.getInstance());
 		
-		menu.add(new QuitterAction());
+		menu.add(new QuitterAction(AbstractVue.this));
 		menu.getItem(5).setAccelerator(KeyStroke.getKeyStroke(QUITTER_RACC, CTRL_MASK));
 		menu.getItem(5).setMnemonic(QUITTER_RACC);
 
