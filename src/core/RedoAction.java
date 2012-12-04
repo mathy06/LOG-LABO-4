@@ -2,7 +2,9 @@ package core;
 
 import java.awt.event.ActionEvent;
 
-public class RedoAction {
+import javax.swing.AbstractAction;
+
+public class RedoAction extends AbstractAction{
 		
 	private static final long serialVersionUID = 1L;
 	private static RedoAction instance;

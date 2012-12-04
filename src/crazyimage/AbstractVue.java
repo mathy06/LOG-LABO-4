@@ -22,8 +22,10 @@ import modele.Image;
 import controller.FileChooser;
 
 import core.ApplicationSupport;
+import core.RedoAction;
 import core.Restore;
 import core.Serializer;
+import core.UndoAction;
 
 public abstract class AbstractVue extends JFrame implements Observer {
 
@@ -47,6 +49,8 @@ public abstract class AbstractVue extends JFrame implements Observer {
 	protected static final char FORME_RACC = KeyEvent.VK_O;
 	protected static final char SAVE_RACC = KeyEvent.VK_S;
 	protected static final char RESTORE_RACC = KeyEvent.VK_R;
+	protected static final char UNDO_RACC = KeyEvent.VK_X;
+	protected static final char REDO_RACC = KeyEvent.VK_Y;
 	protected static final char TANSLATION_RACC = KeyEvent.VK_T;
 	protected static final char QUITTER_RACC = KeyEvent.VK_Q;
 	protected static final char AIDE_RACC = KeyEvent.VK_A;
@@ -58,6 +62,8 @@ public abstract class AbstractVue extends JFrame implements Observer {
 			FICHIER_FORME = "app.frame.menus.file.getshape",
 			FICHIER_SAVE = "app.frame.menus.file.save",
 			FICHIER_RESTORE = "app.frame.menus.file.restore",
+			FICHIER_UNDO = "app.frame.menus.file.undo",
+			FICHIER_REDO = "app.frame.menus.file.redo",
 			FICHIER_QUITTER = "app.frame.menus.file.exit",
 			ORDRE_TITRE = "app.frame.menus.order.title",
 			ORDRE_NOSEQASC = "app.frame.menus.order.nosequenceascending",
@@ -217,9 +223,19 @@ public abstract class AbstractVue extends JFrame implements Observer {
 		menu.getItem(2).setAccelerator(KeyStroke.getKeyStroke(RESTORE_RACC, CTRL_MASK));
 		menu.getItem(2).setMnemonic(RESTORE_RACC);
 		
+		menu.add(ApplicationSupport.getResource(FICHIER_UNDO));
+		menu.getItem(3).setAccelerator(KeyStroke.getKeyStroke(UNDO_RACC, CTRL_MASK));
+		menu.getItem(3).setMnemonic(UNDO_RACC);
+		//menu.getItem(4).setAction(UndoAction.getInstance());
+		
+		menu.add(ApplicationSupport.getResource(FICHIER_REDO));
+		menu.getItem(4).setAccelerator(KeyStroke.getKeyStroke(REDO_RACC, CTRL_MASK));
+		menu.getItem(4).setMnemonic(REDO_RACC);
+		//menu.getItem(4).setAction(RedoAction.getInstance());
+		
 		menu.add(new QuitterAction());
-		menu.getItem(3).setAccelerator(KeyStroke.getKeyStroke(QUITTER_RACC, CTRL_MASK));
-		menu.getItem(3).setMnemonic(QUITTER_RACC);
+		menu.getItem(5).setAccelerator(KeyStroke.getKeyStroke(QUITTER_RACC, CTRL_MASK));
+		menu.getItem(5).setMnemonic(QUITTER_RACC);
 
 		return menu;
 	}
