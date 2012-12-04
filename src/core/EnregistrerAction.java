@@ -1,13 +1,10 @@
 package core;
 
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
 
 import modele.Image;
 
-public class EnregistrerAction extends AbstractAction {
+public class EnregistrerAction extends AbstractCoreAction {
 	private static final long serialVersionUID = 1L;
 	protected static final String FICHIER_SAVE = "app.frame.menus.file.save";
 	Component parent;
@@ -17,7 +14,10 @@ public class EnregistrerAction extends AbstractAction {
 		parent = comp;
 	}
 	
-	public void actionPerformed(ActionEvent arg0) {
+
+	@Override
+	public void executeAction() {
 		Serializer.getInstance().serialize(Image.getInstance().getFilename());
+		
 	}
 }

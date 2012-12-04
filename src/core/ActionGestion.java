@@ -1,6 +1,5 @@
 package core;
 
-import modele.PerspectiveModel;
 
 public class ActionGestion {
 	

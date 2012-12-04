@@ -3,9 +3,7 @@ package core;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 
-import javax.swing.AbstractAction;
-
-public class QuitterAction extends AbstractAction{
+public class QuitterAction extends AbstractCoreAction{
 	
 	private static final long serialVersionUID = 1L;
 	protected static final String FICHIER_QUITTER = "app.frame.menus.file.exit";
@@ -17,6 +15,11 @@ public class QuitterAction extends AbstractAction{
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
+		
+	}
+
+	@Override
+	public void executeAction() {
 		System.exit(0);
 	}
 }

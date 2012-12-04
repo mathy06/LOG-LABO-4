@@ -1,9 +1,6 @@
 package core;
 
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controller.FileChooser;
