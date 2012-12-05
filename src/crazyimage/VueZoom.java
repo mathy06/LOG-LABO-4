@@ -97,9 +97,6 @@ import core.ApplicationSupport;
 
 public class VueZoom extends AbstractVue {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4829602594348697503L;
 
 	/* - Constructeur - Créer le cadre dans lequel les formes sont dessinées. */
@@ -116,7 +113,7 @@ public class VueZoom extends AbstractVue {
 		public CustomCanvas() {
 			setSize(getPreferredSize());
 			setMinimumSize(getPreferredSize());
-			CustomCanvas.this.addMouseWheelListener(new Zoom("Zoom"));
+			CustomCanvas.this.addMouseWheelListener(new Zoom(ApplicationSupport.getResource(ZOOM)));
 			CustomCanvas.this.setBackground(Color.white);
 		}
 		
@@ -143,15 +140,15 @@ public class VueZoom extends AbstractVue {
 
 	/* Créer le menu "Ordre". */
 	protected JMenu creerMenuOperation() {
-		JMenu menu = new JMenu(ApplicationSupport.getResource(ORDRE_TITRE));
+		JMenu menu = new JMenu(ApplicationSupport.getResource(OPERATION_TITRE));
 		menu.setMnemonic(ZOOM_RACC);
 		
 		/* Création de JRadtioButtonMenuItem. */
-		JMenuItem zoom = new JMenuItem(new SecondaryMenu(ApplicationSupport.getResource(ORDRE_NOSEQASC)));
+		JMenuItem zoom = new JMenuItem(new SecondaryMenu(ApplicationSupport.getResource(ZOOM)));
 		
 		
 		/* Ajout des raccourcis spécifiques à chaque bouton radio. */
-		zoom.addActionListener(new Zoom("Zoom"));
+		zoom.addActionListener(new Zoom(ApplicationSupport.getResource(ZOOM)));
 		zoom.setAccelerator(KeyStroke.getKeyStroke(ZOOM_RACC, CTRL_MASK));
 		zoom.setMnemonic(ZOOM_RACC);
 

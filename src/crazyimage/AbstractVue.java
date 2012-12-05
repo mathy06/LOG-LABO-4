@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JOptionPane;
@@ -28,9 +27,6 @@ import core.UndoAction;
 
 public abstract class AbstractVue extends JFrame implements Observer {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3153296834953213565L;
 
 	protected static final int CANEVAS_HAUTEUR = 500;
@@ -61,21 +57,17 @@ public abstract class AbstractVue extends JFrame implements Observer {
 			FICHIER_RESTORE = "app.frame.menus.file.restore",
 			FICHIER_UNDO = "app.frame.menus.file.undo",
 			FICHIER_REDO = "app.frame.menus.file.redo",
-			ORDRE_TITRE = "app.frame.menus.order.title",
-			ORDRE_NOSEQASC = "app.frame.menus.order.nosequenceascending",
-			ORDRE_NOSEQDESC = "app.frame.menus.order.nosequencedescending",
+			OPERATION_TITRE = "app.frame.menus.operation.title",
+			ZOOM = "app.frame.menus.operation.zoom",
+			TRANSLATION = "app.frame.menus.operation.translation",
 			AIDE_TITRE = "app.frame.menus.help.title",
 			AIDE_PROPOS = "app.frame.menus.help.about";
 	
-	protected static final String DIALOGUE_A_PROPOS = "app.frame.dialog.about";
-		
-	protected ButtonGroup groupeOrdre;
-	
-	protected enum Ordre {NOSEQASC, NOSEQDESC};
+	protected static final String DIALOGUE_A_PROPOS = "app.frame.dialog.about";	
 	
 
 	/**
-	 * Traiter les items du menu "Ordre".
+	 * Traiter les items du menu "Operation".
 	 */
 	class SecondaryMenu extends AbstractAction{
 		private static final long serialVersionUID = 1L;
@@ -107,7 +99,7 @@ public abstract class AbstractVue extends JFrame implements Observer {
 	}
 
 	/**
-	 *  Créer le panneau sur lequel les formes sont dessinées. 
+	 *  Créer le panneau sur lequel les images sont affichées. 
 	 */
 	class CustomCanvas extends JPanel {
 		private static final long serialVersionUID = 1L;

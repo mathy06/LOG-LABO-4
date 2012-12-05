@@ -95,10 +95,6 @@ import core.ApplicationSupport;
 
 public class VueTranslation extends AbstractVue{
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	/* - Constructeur - Créer le cadre dans lequel les formes sont dessinées. */
@@ -116,8 +112,8 @@ public class VueTranslation extends AbstractVue{
 			setSize(getPreferredSize());
 			setMinimumSize(getPreferredSize());
 			
-			CustomCanvas.this.addMouseListener(new Translation("Translation"));
-			CustomCanvas.this.addMouseMotionListener(new Translation("Translation"));
+			CustomCanvas.this.addMouseListener(new Translation(ApplicationSupport.getResource(TRANSLATION)));
+			CustomCanvas.this.addMouseMotionListener(new Translation(ApplicationSupport.getResource(TRANSLATION)));
 			CustomCanvas.this.setBackground(Color.white);
 		}
 
@@ -143,14 +139,14 @@ public class VueTranslation extends AbstractVue{
 	
 	/* Créer le menu "Ordre". */
 	protected JMenu creerMenuOperation() {
-		JMenu menu = new JMenu(ApplicationSupport.getResource(ORDRE_TITRE));
+		JMenu menu = new JMenu(ApplicationSupport.getResource(OPERATION_TITRE));
 		menu.setMnemonic(TANSLATION_RACC);
 		
 		
 		/* Création de JRadtioButtonMenuItem. */
-		JMenuItem translation = new JMenuItem(new SecondaryMenu(ApplicationSupport.getResource(ORDRE_NOSEQDESC)));
+		JMenuItem translation = new JMenuItem(new SecondaryMenu(ApplicationSupport.getResource(TRANSLATION)));
 		
-		translation.addActionListener(new Translation("Translation"));
+		translation.addActionListener(new Translation(ApplicationSupport.getResource(TRANSLATION)));
 		translation.setAccelerator(KeyStroke.getKeyStroke(TANSLATION_RACC, CTRL_MASK));
 		translation.setMnemonic(TANSLATION_RACC);
 		
