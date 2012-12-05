@@ -116,8 +116,8 @@ public class VueTranslation extends AbstractVue{
 			setSize(getPreferredSize());
 			setMinimumSize(getPreferredSize());
 			
-			CustomCanvas.this.addMouseListener(new Translation());
-			CustomCanvas.this.addMouseMotionListener(new Translation());
+			CustomCanvas.this.addMouseListener(new Translation("Translation"));
+			CustomCanvas.this.addMouseMotionListener(new Translation("Translation"));
 			CustomCanvas.this.setBackground(Color.white);
 		}
 
@@ -150,7 +150,7 @@ public class VueTranslation extends AbstractVue{
 		/* Création de JRadtioButtonMenuItem. */
 		JMenuItem translation = new JMenuItem(new SecondaryMenu(ApplicationSupport.getResource(ORDRE_NOSEQDESC)));
 		
-		translation.addActionListener(new Translation());
+		translation.addActionListener(new Translation("Translation"));
 		translation.setAccelerator(KeyStroke.getKeyStroke(TANSLATION_RACC, CTRL_MASK));
 		translation.setMnemonic(TANSLATION_RACC);
 		

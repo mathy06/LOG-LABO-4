@@ -24,15 +24,14 @@ Historique des modifications
 * 			   implémentation du listener MouseWhell
 ********************************************************/
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 import javax.swing.JOptionPane;
 
 import core.AbstractCoreAction;
-import core.ActionGestion;
+import core.FileRedo;
+import core.FileUndo;
 
 import modele.Image;
 import modele.PerspectiveModel;
@@ -44,31 +43,41 @@ import modele.PerspectiveModel;
  */
 public class Zoom extends AbstractCoreAction implements MouseWheelListener{
 
+	private static final long serialVersionUID = 1L;
+
 	public Zoom(String ressource) {
 		super(ressource);
 	}
 
-	//TODO : Doit changer l'appel à repaint pour qu'il appel l'observer
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent whellEvent) {
+		setMemento();
+		//Sauvegarde de l'état avant la modification.
+		try {
+			FileUndo.getInstance().addFirst((AbstractCoreAction) this.clone());
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		FileRedo.getInstance().clear();
 		PerspectiveModel.getInstance().zoom(-whellEvent.getUnitsToScroll());
 	}
 
 	@Override
 	public void executeAction() {
 		try{
-			
 			Image.getInstance().getImg();
 			String answer = "";
-			answer = JOptionPane.showInputDialog("Entrer la position voulu avec un \";\" entre les coordonné");
-			ActionGestion.addAction((AbstractCoreAction) this.clone());
+			answer = JOptionPane.showInputDialog("Entrer la valeur de zoom en pourcentage.");
+			//Sauvegarde de l'état avant la modification.
+			FileUndo.getInstance().addFirst((AbstractCoreAction) this.clone());
+			FileRedo.getInstance().clear();
+			//Application du zoom à l'image.
 			PerspectiveModel.getInstance().percentZoom(Integer.parseInt(answer));
 		}catch(NullPointerException except){
 			except.getMessage();
 		}catch(NumberFormatException except){
 			JOptionPane.showMessageDialog(null, "Vous devez entrer un nombre entier");
 		} catch (Exception except) {
-			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(null, "Vous devez dabord charger une image");
 		}
 	}

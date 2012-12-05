@@ -22,7 +22,9 @@ import core.ApplicationSupport;
 import core.EnregistrerAction;
 import core.OuvrirImageAction;
 import core.QuitterAction;
+import core.RedoAction;
 import core.Restore;
+import core.UndoAction;
 
 public abstract class AbstractVue extends JFrame implements Observer {
 
@@ -46,7 +48,7 @@ public abstract class AbstractVue extends JFrame implements Observer {
 	protected static final char FORME_RACC = KeyEvent.VK_O;
 	protected static final char SAVE_RACC = KeyEvent.VK_S;
 	protected static final char RESTORE_RACC = KeyEvent.VK_R;
-	protected static final char UNDO_RACC = KeyEvent.VK_X;
+	protected static final char UNDO_RACC = KeyEvent.VK_Z;
 	protected static final char REDO_RACC = KeyEvent.VK_Y;
 	protected static final char TANSLATION_RACC = KeyEvent.VK_T;
 	protected static final char QUITTER_RACC = KeyEvent.VK_Q;
@@ -156,16 +158,16 @@ public abstract class AbstractVue extends JFrame implements Observer {
 		menu.add(new Restore(AbstractVue.this));
 		menu.getItem(2).setAccelerator(KeyStroke.getKeyStroke(RESTORE_RACC, CTRL_MASK));
 		menu.getItem(2).setMnemonic(RESTORE_RACC);
-		
-		menu.add(ApplicationSupport.getResource(FICHIER_UNDO));
+
+		menu.add(UndoAction.getInstance());
+		menu.getItem(3).setText(ApplicationSupport.getResource(FICHIER_UNDO));
 		menu.getItem(3).setAccelerator(KeyStroke.getKeyStroke(UNDO_RACC, CTRL_MASK));
 		menu.getItem(3).setMnemonic(UNDO_RACC);
-		//menu.getItem(4).setAction(UndoAction.getInstance());
-		
-		menu.add(ApplicationSupport.getResource(FICHIER_REDO));
+
+		menu.add(RedoAction.getInstance());
+		menu.getItem(4).setText(ApplicationSupport.getResource(FICHIER_REDO));
 		menu.getItem(4).setAccelerator(KeyStroke.getKeyStroke(REDO_RACC, CTRL_MASK));
 		menu.getItem(4).setMnemonic(REDO_RACC);
-		//menu.getItem(4).setAction(RedoAction.getInstance());
 		
 		menu.add(new QuitterAction(AbstractVue.this));
 		menu.getItem(5).setAccelerator(KeyStroke.getKeyStroke(QUITTER_RACC, CTRL_MASK));

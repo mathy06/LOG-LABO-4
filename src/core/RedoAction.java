@@ -18,8 +18,10 @@ public class RedoAction extends AbstractAction{
 	private RedoAction(){}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		AbstractCoreAction action = FileRedo.getInstance().removeFirst();
-		action.undo();
-		FileUndo.getInstance().addFirst(action);
+		if(!FileRedo.getInstance().isEmpty()){
+			AbstractCoreAction action = FileRedo.getInstance().removeFirst();
+			action.undo();
+			FileUndo.getInstance().addFirst(action);
+		}
 	}
 }

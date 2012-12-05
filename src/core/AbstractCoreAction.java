@@ -9,12 +9,10 @@ public abstract class AbstractCoreAction extends AbstractAction{
 	private static final long serialVersionUID = 1L;
 	private Memento memento;
 	
-	
-	public AbstractCoreAction(String resource) {
-		super(resource);
+	public AbstractCoreAction(String ressource){
+		super(ressource);
 	}
-
-
+	
 	public void undo(){
 		Memento memento_redo = PerspectiveModel.getInstance().getMemento();
 		PerspectiveModel.getInstance().setMemento(memento);
@@ -28,8 +26,12 @@ public abstract class AbstractCoreAction extends AbstractAction{
 	}
 
 	public void actionPerformed(ActionEvent event) {
+		setMemento();
+		executeAction();
+	}
+	
+	protected void setMemento(){
 		memento = PerspectiveModel.getInstance().getMemento();
-		executeAction();		
 	}
 	
 	public abstract void executeAction();

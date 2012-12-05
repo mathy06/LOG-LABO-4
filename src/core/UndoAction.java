@@ -18,9 +18,11 @@ public class UndoAction extends AbstractAction{
 	private UndoAction(){}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		AbstractCoreAction action = FileUndo.getInstance().removeFirst();
-		action.undo();
-		FileRedo.getInstance().addFirst(action);
+		if(!FileUndo.getInstance().isEmpty()){
+			AbstractCoreAction action = FileUndo.getInstance().removeFirst();
+			action.undo();
+			FileRedo.getInstance().addFirst(action);
+		}
 	}
 
 }

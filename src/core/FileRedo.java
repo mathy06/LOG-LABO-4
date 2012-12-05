@@ -26,4 +26,8 @@ public class FileRedo {
 	public void clear(){
 		actionsToRedo.clear();
 	}
+	
+	public boolean isEmpty(){
+		return actionsToRedo.isEmpty();
+	}
 }

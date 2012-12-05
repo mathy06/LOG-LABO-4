@@ -26,5 +26,9 @@ public class FileUndo {
 	public void clear(){
 		actionsToUndo.clear();
 	}
+	
+	public boolean isEmpty(){
+		return actionsToUndo.isEmpty();
+	}
 
 }
