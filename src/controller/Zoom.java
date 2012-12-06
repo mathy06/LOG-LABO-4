@@ -32,7 +32,7 @@ import javax.swing.JOptionPane;
 import core.FileRedo;
 import core.FileUndo;
 
-import modele.Image;
+import modele.ImageModel;
 import modele.PerspectiveModel;
 
 /**
@@ -64,7 +64,7 @@ public class Zoom extends AbstractCoreAction implements MouseWheelListener{
 	@Override
 	public void executeAction() {
 		try{
-			Image.getInstance().getImg();
+			ImageModel.getInstance().getImg();
 			String answer = "";
 			answer = JOptionPane.showInputDialog("Entrer la valeur de zoom en pourcentage.");
 			//Sauvegarde de l'état avant la modification.

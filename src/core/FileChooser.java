@@ -1,4 +1,5 @@
 package core;
+
 /******************************************************
 Cours : LOG121
 Session : A2012
@@ -24,6 +25,7 @@ Historique des modifications
 * 2012-11-21 : Déplacement de package.caryimage
 * 			   à package.controller
 ********************************************************/
+
 import java.awt.Component;
 import java.io.File;
 import java.util.Locale;
@@ -31,14 +33,11 @@ import java.util.Locale;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
-
 /**
- * 
  * Class ImageFileChooser
  * Permet d'instancier un JFilechooser
  *qui lui permet de récupérer un fichier
  *sur le disque et de le stocker dans un objet
- *
  */
 public class FileChooser {
 	

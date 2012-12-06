@@ -16,7 +16,7 @@ Code(s) perm. :  CHAP07110906
 				
 Professeur : Ghizlane El boussaidi
 Chargé de labo  : Alvine Boaye Belle
-Nom du fichier : AbstractSubject.java
+Nom du fichier : Subject.java
 Date créée :       2012-11-30
 Date dern. modif. : 2012-11-30
 

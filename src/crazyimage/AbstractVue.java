@@ -22,10 +22,36 @@ import controller.RedoAction;
 import controller.Restore;
 import controller.UndoAction;
 
-import modele.Image;
+import modele.ImageModel;
 
 import core.ApplicationSupport;
 
+/******************************************************
+Cours : LOG121
+Session : A2012
+Groupe : 04
+Projet : Laboratoire #4
+Étudiant(e)(s) : Philippe Charbonneau
+				 Patrice Robitaille
+				 Mathieu Battah
+Code(s) perm. :  CHAP07110906
+                 ROBP2002805 
+                 BATM19038902 
+				
+Professeur : Ghizlane El boussaidi
+Chargé de labo  : Alvine Boaye Belle
+Nom du fichier : AbstractVue.java
+Date créée :       2012-12-06
+Date dern. modif. : 2012-12-06
+
+*******************************************************
+Historique des modifications
+*******************************************************
+********************************************************/
+
+/**
+ * Vue abstraite contenant des fonctionnalités communes aux vues.
+ */
 public abstract class AbstractVue extends JFrame implements Observer {
 
 	private static final long serialVersionUID = -3153296834953213565L;
@@ -119,9 +145,9 @@ public abstract class AbstractVue extends JFrame implements Observer {
 			super.paintComponent(graphics);
 			Graphics2D g2d = (Graphics2D) graphics;
 			try{//On dessine l'image
-				g2d.drawImage(Image.getInstance().getImg(), Image.getInstance().getPosX(), 
-							  Image.getInstance().getPosY(), Image.getInstance().getWidth(), 
-							  Image.getInstance().getHeigth(), null);
+				g2d.drawImage(ImageModel.getInstance().getImg(), ImageModel.getInstance().getPosX(), 
+							  ImageModel.getInstance().getPosY(), ImageModel.getInstance().getWidth(), 
+							  ImageModel.getInstance().getHeigth(), null);
 				
 			}catch(Exception ex){
 				ex.getMessage();

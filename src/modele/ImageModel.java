@@ -29,17 +29,35 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.*;
 
+/******************************************************
+Cours : LOG121
+Session : A2012
+Groupe : 04
+Projet : Laboratoire #4
+Étudiant(e)(s) : Philippe Charbonneau
+				 Patrice Robitaille
+				 Mathieu Battah
+Code(s) perm. :  CHAP07110906
+                 ROBP2002805 
+                 BATM19038902 
+				
+Professeur : Ghizlane El boussaidi
+Chargé de labo  : Alvine Boaye Belle
+Nom du fichier : ImageModel.java
+Date créée :       2012-12-06
+Date dern. modif. : 2012-12-06
+
+*******************************************************
+Historique des modifications
+*******************************************************
+********************************************************/
+
 /**
- * 
- * Class Image
- * Classe représentant une image
- * sur laquelle il est possible d'efefctuer
- * des opérations de changement.
- *
+ * Classe représentant une image sur laquelle il est possible d'effectuer des opérations de changement.
  */
-public class Image extends Subject {
+public class ImageModel extends Subject {
 	
-	private static Image instance;
+	private static ImageModel instance;
 	private int posX =0; //Position en X de l'image
 	private int posY =0; //Position en Y de l'image
 	private int width =-1;
@@ -48,15 +66,15 @@ public class Image extends Subject {
 	private String filename;
 	
 	
-	private Image(){}
+	private ImageModel(){}
 	
 	/**
 	 * Retourne l'instance de l'image
 	 * @return
 	 */
-	public static Image getInstance(){
+	public static ImageModel getInstance(){
 		if (instance == null)
-			instance = new Image();
+			instance = new ImageModel();
 		return instance;
 	}
 	

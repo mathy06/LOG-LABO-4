@@ -34,11 +34,10 @@ import javax.swing.JOptionPane;
 import core.FileRedo;
 import core.FileUndo;
 
-import modele.Image;
+import modele.ImageModel;
 import modele.PerspectiveModel;
 
 /**
- * 
  *Class Translation implements MouseMotionListener et MouseListener Cette
  * classe permet d'effectuer un changement de position sur une image préchargé
  */
@@ -91,7 +90,7 @@ public class Translation extends AbstractCoreAction implements
 	@Override
 	public void executeAction() {
 		try {
-			Image.getInstance().getImg();
+			ImageModel.getInstance().getImg();
 			String answer = "";
 			while (!answer.contains(";")) {
 				answer = JOptionPane

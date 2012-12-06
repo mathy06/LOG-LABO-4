@@ -8,6 +8,32 @@ import java.io.ObjectOutputStream;
 
 import modele.PerspectiveModel;
 
+/******************************************************
+Cours : LOG121
+Session : A2012
+Groupe : 04
+Projet : Laboratoire #4
+Étudiant(e)(s) : Philippe Charbonneau
+				 Patrice Robitaille
+				 Mathieu Battah
+Code(s) perm. :  CHAP07110906
+                 ROBP2002805 
+                 BATM19038902 
+				
+Professeur : Ghizlane El boussaidi
+Chargé de labo  : Alvine Boaye Belle
+Nom du fichier : Serializer.java
+Date créée :       2012-12-06
+Date dern. modif. : 2012-12-06
+
+*******************************************************
+Historique des modifications
+*******************************************************
+********************************************************/
+
+/**
+ * Classe permettant de sauvegarder une perspective dans un fichier et de lire un fichier d'une perspective.
+ */
 public class Serializer {
 	
 	PerspectiveModel perspec;

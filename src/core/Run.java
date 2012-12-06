@@ -28,10 +28,8 @@ Historique des modifications
 ********************************************************/
 
 /**
- * 
  * Class Run 
  * Permet de lancer l'application.
- *
  */
 public class Run {
 
