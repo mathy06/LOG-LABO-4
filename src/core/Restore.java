@@ -25,7 +25,7 @@ public class Restore extends AbstractCoreAction{
 		fileChooser.getSelectedFile(parent);
 		
 		try {
-			String filename = fileChooser.getSelectedFileName(parent);
+			String filename = fileChooser.getSelectedFile(parent);
 			
 			if(filename != null){
 				//Sauvegarde de l'état avant la modification.

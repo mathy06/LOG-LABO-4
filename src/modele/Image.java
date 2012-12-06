@@ -108,6 +108,7 @@ public class Image extends Subject {
 		}
 		finally{
 			notifyObservers();
+			PerspectiveModel.getInstance().reset();
 		}
 	}
 	

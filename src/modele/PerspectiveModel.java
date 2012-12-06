@@ -13,8 +13,8 @@ public class PerspectiveModel extends Subject implements java.io.Serializable {
 	private static PerspectiveModel instance;
 	private int positionX = 0;
 	private int positionY = 0;
-	private int height = 0;
-	private int width = 0;
+	private int height = -1;
+	private int width = -1;
 	private int zoomFactor =0;
 	
 	public static PerspectiveModel getInstance(){
@@ -80,6 +80,13 @@ public class PerspectiveModel extends Subject implements java.io.Serializable {
 		notifyObservers();
 	}
 	public void undo(){}
+	
+	public void reset(){
+		height = Image.getInstance().getHeigth();
+		width  = Image.getInstance().getWidth();
+		positionX = Image.getInstance().getPosX();
+		positionY = Image.getInstance().getPosY();
+	}
 	
 	/*
 	 * Méthode setProperties(PerspectiveModel)
