@@ -175,9 +175,5 @@ public class VueTranslation extends AbstractVue{
 				+ MARGE_H, CANEVAS_HAUTEUR + MARGE_V);
 	}
 	
-	public void update() {
-		repaint();
-		validate();
-	}
 }
 

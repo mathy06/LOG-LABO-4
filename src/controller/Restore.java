@@ -1,9 +1,13 @@
-package core;
+package controller;
 
 import java.awt.Component;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import controller.FileChooser;
+import core.ApplicationSupport;
+import core.FileChooser;
+import core.FileRedo;
+import core.FileUndo;
+import core.Serializer;
 
 public class Restore extends AbstractCoreAction{
 

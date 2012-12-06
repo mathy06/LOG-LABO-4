@@ -179,11 +179,6 @@ public class VueZoom extends AbstractVue {
 				.getResource("app.frame.titleZoom"), (centre.x - (CANEVAS_LARGEUR / 2)), (centre.y - (CANEVAS_HAUTEUR / 2)), CANEVAS_LARGEUR
 				+ MARGE_H, CANEVAS_HAUTEUR + MARGE_V);
 	}
-	
-	public void update(){
-		repaint();
-		validate();
-	}
 		
 }
 

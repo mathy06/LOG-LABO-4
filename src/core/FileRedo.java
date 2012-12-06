@@ -2,6 +2,8 @@ package core;
 
 import java.util.LinkedList;
 
+import controller.AbstractCoreAction;
+
 public class FileRedo {
 	
 	private static FileRedo instance;

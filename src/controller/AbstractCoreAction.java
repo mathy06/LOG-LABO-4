@@ -1,7 +1,9 @@
-package core;
+package controller;
 
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
+
+import core.Memento;
 import modele.PerspectiveModel;
 
 public abstract class AbstractCoreAction extends AbstractAction{

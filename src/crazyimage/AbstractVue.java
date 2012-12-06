@@ -15,15 +15,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import controller.EnregistrerAction;
+import controller.OuvrirImageAction;
+import controller.QuitterAction;
+import controller.RedoAction;
+import controller.Restore;
+import controller.UndoAction;
+
 import modele.Image;
 
 import core.ApplicationSupport;
-import core.EnregistrerAction;
-import core.OuvrirImageAction;
-import core.QuitterAction;
-import core.RedoAction;
-import core.Restore;
-import core.UndoAction;
 
 public abstract class AbstractVue extends JFrame implements Observer {
 
@@ -180,6 +181,9 @@ public abstract class AbstractVue extends JFrame implements Observer {
 		return menu;
 	}
 	
-	public abstract void update();
+	public void update(){
+		repaint();
+		validate();
+	}
 	
 }

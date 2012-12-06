@@ -1,8 +1,11 @@
-package core;
+package controller;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+
+import core.FileRedo;
+import core.FileUndo;
 
 public class RedoAction extends AbstractAction{
 		

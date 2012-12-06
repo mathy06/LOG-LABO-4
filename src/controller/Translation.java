@@ -31,7 +31,6 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JOptionPane;
 
-import core.AbstractCoreAction;
 import core.FileRedo;
 import core.FileUndo;
 

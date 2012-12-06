@@ -86,6 +86,7 @@ public class PerspectiveModel extends Subject implements java.io.Serializable {
 		width  = Image.getInstance().getWidth();
 		positionX = Image.getInstance().getPosX();
 		positionY = Image.getInstance().getPosY();
+		notifyObservers();
 	}
 	
 	/*

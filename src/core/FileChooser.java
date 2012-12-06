@@ -1,4 +1,4 @@
-package controller;
+package core;
 /******************************************************
 Cours : LOG121
 Session : A2012

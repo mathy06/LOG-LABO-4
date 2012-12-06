@@ -1,6 +1,9 @@
-package core;
+package controller;
 
 import java.awt.Component;
+
+import core.ApplicationSupport;
+import core.Serializer;
 
 import modele.Image;
 

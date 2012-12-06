@@ -1,6 +1,8 @@
-package core;
+package controller;
 
 import java.awt.Component;
+
+import core.ApplicationSupport;
 
 public class QuitterAction extends AbstractCoreAction{
 	

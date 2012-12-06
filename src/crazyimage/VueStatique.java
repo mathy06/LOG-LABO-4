@@ -121,11 +121,6 @@ public class VueStatique extends AbstractVue {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	public void update(){
-		repaint();
-		validate();
-	}
 		
 }
 

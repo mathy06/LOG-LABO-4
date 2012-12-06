@@ -1,4 +1,4 @@
-package core;
+package controller;
 
 import java.awt.Component;
 import java.io.IOException;
@@ -6,7 +6,8 @@ import java.io.IOException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import modele.Image;
-import controller.FileChooser;
+import core.ApplicationSupport;
+import core.FileChooser;
 
 public class OuvrirImageAction extends AbstractCoreAction {
 	

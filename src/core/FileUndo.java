@@ -2,6 +2,8 @@ package core;
 
 import java.util.LinkedList;
 
+import controller.AbstractCoreAction;
+
 public class FileUndo {
 	
 	private static FileUndo instance;
