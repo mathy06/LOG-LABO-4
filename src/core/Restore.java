@@ -27,8 +27,13 @@ public class Restore extends AbstractCoreAction{
 		try {
 			String filename = fileChooser.getSelectedFileName(parent);
 			
-			if(filename != null)
+			if(filename != null){
+				//Sauvegarde de l'état avant la modification.
+				FileUndo.getInstance().addFirst((AbstractCoreAction) this.clone());
+				FileRedo.getInstance().clear();
+
 				Serializer.getInstance().deserialize(filename);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
