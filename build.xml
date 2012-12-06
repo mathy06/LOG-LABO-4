@@ -9,9 +9,8 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
-    <path id="LOG-LABO-2.classpath">
+    <path id="LOG-LABO-4.classpath">
        <pathelement location="bin"/>
-       <pathelement location="library/ca.etsmtl.log.util.jar"/>
     </path>
     <target name="init">
        <mkdir dir="bin"/>
@@ -29,7 +28,7 @@
        <echo message="${ant.project.name}: ${ant.file}"/>
        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}" includeantruntime="false">
            <src path="src"/>
-           <classpath refid="LOG-LABO-2.classpath"/>
+           <classpath refid="LOG-LABO-4.classpath"/>
        </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -38,7 +37,6 @@
            <manifest>
                <attribute name="Main-Class" value="clientforme.ApplicationSwing"/>
            </manifest>
-	   <zipfileset excludes="META-INF/*.SF" src="library/ca.etsmtl.log.util.jar"/>
        </jar>
     </target>
     <target name="run">
